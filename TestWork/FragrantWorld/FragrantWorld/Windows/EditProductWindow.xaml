@@ -1,0 +1,57 @@
+﻿<Window x:Class="FragrantWorld.EditProductWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FragrantWorld"
+        mc:Ignorable="d"
+        Title="Редактор товаров" Height="215" Width="600" MinHeight="215" MinWidth="600" MaxHeight="215" MaxWidth="600" 
+        FontFamily="Comic Sans MS"
+        WindowStartupLocation="CenterScreen" SizeToContent="Height" Closing="Window_Closing">
+    <StackPanel Name="infoStackPanel">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="154"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="ООО Ароматный мир" Margin="25,2,0,4"/>
+            <Button Name="clearButton" Content="Очистить поля ввода" Grid.Column="1" Width="150" HorizontalAlignment="Right" Margin="5,2,2,2" Click="ClearButton_Click"/>
+        </Grid>
+        <WrapPanel>
+            <TextBlock Text="Название товара:" Width="175" TextAlignment="Center"/>
+            <TextBox Name="productNameTextBox" Background="#00000000"/>
+        </WrapPanel>
+        <WrapPanel>
+            <TextBlock Text="Описание товара: " Width="175" TextAlignment="Center"/>
+            <TextBox Name="productDescriptionTextBox" TextWrapping="WrapWithOverflow" Background="#00000000"/>
+        </WrapPanel>
+        <WrapPanel>
+            <TextBlock Text="Категория товара: " Width="175" TextAlignment="Center"/>
+            <TextBox Name="productCategoryTextBox" Background="#00000000"/>
+        </WrapPanel>
+        <WrapPanel>
+            <TextBlock Text="Производитель товара: " Width="175" TextAlignment="Center"/>
+            <TextBox Name="productManufacturerTextBox" Background="#00000000"/>
+        </WrapPanel>
+        <WrapPanel>
+            <TextBlock Text="Цена товара: " Width="175" TextAlignment="Center"/>
+            <TextBox Name="productCostTextBox"  PreviewTextInput="TextBox_PreviewTextInput" Background="#00000000"/>
+        </WrapPanel>
+        <WrapPanel>
+            <TextBlock Text="Скидка на товар: " Width="175" TextAlignment="Center"/>
+            <TextBox Name="productDiscountTextBox" PreviewTextInput="TextBox_PreviewTextInput" Background="#00000000"/>
+        </WrapPanel>
+        <WrapPanel>
+            <TextBlock Text="Количество товара на складе: " Width="175" TextAlignment="Center"/>
+            <TextBox Name="productQuantityInStockTextBox" PreviewTextInput="TextBox_PreviewTextInput" Background="#00000000"/>
+        </WrapPanel>
+        <WrapPanel>
+            <TextBlock Text="Статус товара: " Width="175" TextAlignment="Center"/>
+            <TextBox Name="productStatusTextBox" Background="#00000000"/>
+        </WrapPanel>
+        <DockPanel>
+            <Button Name="saveChangesButton" Content="Сохранить изменения" DockPanel.Dock="Left" Width="176" Margin="5,2,2,2" Click="SaveChangesButton_Click"/>
+            <Button Name="cancelButton" Content="Отмена" HorizontalAlignment="Right" Width="150" Margin="5,2,2,2" Click="CancelButton_Click"/>
+        </DockPanel>
+    </StackPanel>
+</Window>
