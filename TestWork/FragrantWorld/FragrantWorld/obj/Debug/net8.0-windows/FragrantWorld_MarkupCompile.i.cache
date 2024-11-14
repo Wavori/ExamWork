@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-C:\Users\koree\OneDrive\Рабочий стол\TestWork\FragrantWorld\FragrantWorld\obj\Debug\net8.0-windows\
+C:\Users\koree\OneDrive\Рабочий стол\ExamWork\TestWork\FragrantWorld\FragrantWorld\obj\Debug\net8.0-windows\
 FragrantWorld
 none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP
-C:\Users\koree\OneDrive\Рабочий стол\TestWork\FragrantWorld\FragrantWorld\App.xaml
+C:\Users\koree\OneDrive\Рабочий стол\ExamWork\TestWork\FragrantWorld\FragrantWorld\App.xaml
 9-689250635
 
 19-388345747
-226-1498049580
+2261883461418
 Pages\AdminPage.xaml;Pages\ClientPage.xaml;Pages\ManagerPage.xaml;Pages\StartPage.xaml;Windows\AddProductWindow.xaml;Windows\EditOrderWindow.xaml;Windows\EditProductWindow.xaml;Windows\MainWindow.xaml;Windows\OrderWindow.xaml;
 
 False

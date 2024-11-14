@@ -25,12 +25,12 @@ namespace FragrantWorld
             }
         }
 
-        public static List<Product> GetProduct()
-        {
-            using SqlConnection connection = new(ConnectionString);
-            connection.Open();
-
-            var query = "USE ExamDatabase SELECT * FROM ExamProduct";
+        public static List<Product> GetProduct()                                //Подключается к базе данных.
+        {                                                                       //Выполняет SQL-запрос для получения всех продуктов из таблицы ExamProduct.
+            using SqlConnection connection = new(ConnectionString);             //Читает данные из результата запроса и создает объекты Product.
+            connection.Open();                                                  //Добавляет созданные объекты в список.
+                                                                                //Возвращает список объектов Product.
+            var query = "USE ExamDatabase SELECT * FROM ExamProduct";           //Этот метод подключается к базе данных, выполняет запрос для получения всех продуктов из таблицы ExamProduct, читает данные из результата запроса и возвращает их в виде списка объектов Product.
             SqlCommand command = new(query, connection);
             List<Product> products = new();
             var reader = command.ExecuteReader();
@@ -54,24 +54,26 @@ namespace FragrantWorld
             return products;
         }
 
-        public static List<string> GetArticleNumber()
-        {
-            List<Product> products = GetProduct();
-            List<string> articleNumbers = new();
-
-            foreach (var product in products)
+        public static List<string> GetArticleNumber()   //Получает список всех продуктов из базы данных с помощью метода GetProduct.
+        {                                               //Создает новый список для хранения артикулов продуктов.
+            List<Product> products = GetProduct();      //Проходит по каждому продукту в списке и добавляет его артикул в новый список.
+            List<string> articleNumbers = new();        //Возвращает список артикулов.
+                                                        //Этот метод позволяет легко получить все артикулы продуктов из базы данных и вернуть их в виде списка объектов ArticleNumbers.
+            foreach (var product in products)  
             {
                 articleNumbers.Add(product.ArticleNumber);
             }
             return articleNumbers;
         }
 
-        public static List<Order> GetOrder()
-        {
-            using SqlConnection connection = new(ConnectionString);
-            connection.Open();
+        public static List<Order> GetOrder()                                       //Подключается к базе данных.
+        {                                                                          //Выполняет SQL-запрос для получения всех заказов из таблицы ExamOrder.
+            using SqlConnection connection = new(ConnectionString);                //Читает данные из результата запроса и создает объекты Order.
+            connection.Open();                                                     //Добавляет созданные объекты в список.
+                                                                                   //Возвращает список объектов Order.
+            var query = "USE ExamDatabase SELECT * FROM ExamOrder";                //Этот метод позволяет получить все заказы из базы данных и вернуть их в виде списка объектов Order.
 
-            var query = "USE ExamDatabase SELECT * FROM ExamOrder";
+
             SqlCommand command = new(query, connection);
             List<Order> orders = new();
             var reader = command.ExecuteReader();
@@ -92,12 +94,12 @@ namespace FragrantWorld
             return orders;
         }
 
-        public static List<PickupPoint> GetPickupPoint()
-        {
-            using SqlConnection connection = new(ConnectionString);
-            connection.Open();
-
-            var query = "USE ExamDatabase SELECT * FROM ExamPickupPoint";
+        public static List<PickupPoint> GetPickupPoint()                    //Подключается к базе данных.
+        {                                                                   //Выполняет SQL-запрос для получения всех пунктов самовывоза из таблицы ExamPickupPoint.
+            using SqlConnection connection = new(ConnectionString);         //Читает данные из результата запроса и создает объекты PickupPoint.
+            connection.Open();                                              //Добавляет созданные объекты в список.
+                                                                            //Возвращает список объектов PickupPoint.
+            var query = "USE ExamDatabase SELECT * FROM ExamPickupPoint";   //Этот метод позволяет получить все пункты самовывоза из базы данных и вернуть их в виде списка объектов PickupPoint.
             SqlCommand command = new(query, connection);
             List<PickupPoint> pickupPoints = new();
             var reader = command.ExecuteReader();
@@ -114,12 +116,12 @@ namespace FragrantWorld
             }
             return pickupPoints;
         }
-
-        public static User GetUser(string userLogin)
-        {
-            using SqlConnection connection = new(ConnectionString);
-            connection.Open();
-
+            
+        public static User GetUser(string userLogin)                                                //Подключается к базе данных.                   
+        {                                                                                           //Выполняет SQL-запрос для получения данных пользователя с указанным логином из таблицы ExamUser.
+            using SqlConnection connection = new(ConnectionString);                                 //Читает данные из результата запроса и создает объект User.
+            connection.Open();                                                                      //Возвращает объект User.
+                                                                                                    //Этот метод позволяет получить данные пользователя из базы данных по его логину и вернуть их в виде объекта User.
             var query = "USE ExamDatabase SELECT * FROM ExamUser WHERE UserLogin LIKE @searchText";
             SqlCommand command = new(query, connection);
             command.Parameters.AddWithValue("@searchText", $"{userLogin}");
@@ -143,10 +145,10 @@ namespace FragrantWorld
             return user;
         }
 
-        public static string GetUserFullName(int orderId)
-        {
-            using SqlConnection connection = new(ConnectionString);
-            connection.Open();
+        public static string GetUserFullName(int orderId)                                                                       //Подключается к базе данных.
+        {                                                                                                                       //Выполняет SQL-запрос для получения полного имени пользователя с указанным UserID из таблицы ExamUser.
+            using SqlConnection connection = new(ConnectionString);                                                             //Возвращает полное имя пользователя в виде строки.
+            connection.Open();                                                                                                  //Этот метод позволяет получить полное имя пользователя из базы данных по его идентификатору и вернуть его в виде строки.
 
             var query = "SELECT CONCAT_WS(' ',UserSurname, UserName, UserPatronymic) FROM ExamUser WHERE UserID = @orderId";
             SqlCommand command = new(query, connection);
@@ -154,9 +156,9 @@ namespace FragrantWorld
             return Convert.ToString(command.ExecuteScalar());
         }
 
-        public static void AddOrder(int pickupPoint, int receiptCode)
-        {
-            using SqlConnection connection = new(ConnectionString);
+        public static void AddOrder(int pickupPoint, int receiptCode)                                                                               //Подключается к базе данных.
+        {                                                                                                                                           //Формирует SQL-запрос для вставки новой записи в таблицу ExamOrder с указанными значениями.
+            using SqlConnection connection = new(ConnectionString);                                                                                 //Выполняет запрос, добавляя новую запись в таблицу.
             connection.Open();
 
             var query = "USE ExamDatabase INSERT INTO ExamOrder (OrderStatus, OrderDate, OrderDeliveryDate, OrderPickupPoint, OrderReceiptCode) " +
@@ -165,20 +167,20 @@ namespace FragrantWorld
             command.ExecuteNonQuery();
         }
 
-        public static void UpdateOrder(Order order)
-        {
-            using SqlConnection connection = new(ConnectionString);
-            connection.Open();
-
+        public static void UpdateOrder(Order order)                                                                                                                 //Подключается к базе данных.
+        {                                                                                                                                                           //Формирует SQL-запрос для обновления записи в таблице ExamOrder с указанными значениями.
+            using SqlConnection connection = new(ConnectionString);                                                                                                 //Выполняет запрос, обновляя запись в таблице.
+            connection.Open();                                                                                                                                      
+                                                                                                                                                                    
             var query = $"USE ExamDatabase UPDATE ExamOrder SET OrderStatus = N'{order.Status}', OrderPickupPoint = {order.PickupPoint} WHERE OrderID = {order.Id}";
             SqlCommand command = new(query, connection);
             command.ExecuteNonQuery();
         }
 
-        public static double GetOrderTotalCost(int orderId)
-        {
-            using SqlConnection connection = new(ConnectionString);
-            connection.Open();
+        public static double GetOrderTotalCost(int orderId)             //Подключается к базе данных.
+        {                                                               //Вызывает хранимую процедуру GetOrderTotalCost для получения общей стоимости заказа с указанным orderId.
+            using SqlConnection connection = new(ConnectionString);     //Возвращает общую стоимость заказа в виде значения типа double.
+            connection.Open();                                          //
 
             var query = "GetOrderTotalCost";
             SqlCommand command = new(query, connection);
@@ -188,11 +190,11 @@ namespace FragrantWorld
             return result;
         }
 
-        public static double GetOrderTotalDiscount(int orderId)
-        {
-            using SqlConnection connection = new(ConnectionString);
-            connection.Open();
-
+        public static double GetOrderTotalDiscount(int orderId)         //Подключается к базе данных.
+        {                                                               //Вызывает хранимую процедуру GetOrderTotalDiscount для получения общей скидки заказа с указанным orderId.
+            using SqlConnection connection = new(ConnectionString);     //Возвращает общую скидку заказа в виде значения типа int или double.
+            connection.Open();                                          //
+                                                                        //
             var query = "GetOrderTotalDiscount";
             SqlCommand command = new(query, connection);
             command.CommandType = CommandType.StoredProcedure;
@@ -201,10 +203,10 @@ namespace FragrantWorld
             return result;
         }
 
-        public static void UpdateProduct(Product product)
-        {
-            using SqlConnection connection = new(ConnectionString);
-            connection.Open();
+        public static void UpdateProduct(Product product)                                                                                                       //Подключается к базе данных.
+        {                                                                                                                                                       //Формирует SQL-запрос для обновления записи в таблице ExamProduct с указанными значениями.
+            using SqlConnection connection = new(ConnectionString);                                                                                             //Выполняет запрос, обновляя запись в таблице.
+            connection.Open();                                                                                                                                 
 
             var query = $"USE ExamDataBase UPDATE ExamProduct SET ProductName = N'{product.Name}', ProductDescription = N'{product.Description}', " +
                 $"ProductCategory = N'{product.Category}', ProductManufacturer = N'{product.Manufacturer}', ProductCost = {product.Cost}, " +
@@ -214,20 +216,20 @@ namespace FragrantWorld
             command.ExecuteNonQuery();
         }
 
-        public static void DeleteProduct(Product product)
-        {
-            using SqlConnection connection = new(ConnectionString);
-            connection.Open();
+        public static void DeleteProduct(Product product)                                                                     //Подключается к базе данных.
+        {                                                                                                                     //Формирует SQL-запрос для удаления записи из таблицы ExamProduct с указанным значением ProductArticleNumber.
+            using SqlConnection connection = new(ConnectionString);                                                           //Выполняет запрос, удаляя запись из таблицы.
+            connection.Open();                                                                                               
 
             var query = $"USE ExamDataBase DELETE ExamProduct WHERE ProductArticleNumber = N'{product.ArticleNumber}'";
             SqlCommand command = new(query, connection);
             command.ExecuteNonQuery();
         }
 
-        public static void AddProduct(Product product)
-        {
-            using SqlConnection connection = new(ConnectionString);
-            connection.Open();
+        public static void AddProduct(Product product)                                                                                                                  //Подключается к базе данных.
+        {                                                                                                                                                               //Формирует SQL-запрос для вставки новой записи в таблицу ExamProduct с указанными значениями.
+            using SqlConnection connection = new(ConnectionString);                                                                                                     //Выполняет запрос, добавляя новую запись в таблицу.
+            connection.Open();                                                                                                                                         
 
             var query = $"USE ExamDataBase INSERT INTO ExamProduct (ProductArticleNumber, ProductName, ProductDescription, ProductCategory, ProductManufacturer, " +
                 $"ProductCost, ProductDiscountAmount, ProductQuantityInStock, ProductStatus) " +

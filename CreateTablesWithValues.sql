@@ -92,7 +92,7 @@ GO
 CREATE TABLE [dbo].[ExamUser](
 	[UserID] [int] IDENTITY(1,1) NOT NULL,
 	[UserSurname] [nvarchar](100) NOT NULL,
-	[UserName] [nvarchar](100) NOT NULL,
+	[UserName] [nvarchar](100) NOT NULL, 
 	[UserPatronymic] [nvarchar](100) NOT NULL,
 	[UserLogin] [nvarchar](max) NOT NULL,
 	[UserPassword] [nvarchar](max) NOT NULL,

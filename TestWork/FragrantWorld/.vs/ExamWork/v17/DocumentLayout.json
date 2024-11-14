@@ -1,77 +1,81 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\koree\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\TestWork\\FragrantWorld\\",
+  "WorkspaceRootPath": "C:\\Users\\koree\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\ExamWork\\TestWork\\FragrantWorld\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{97A30D77-2C02-4FCD-8A21-8C89737E62F1}|FragrantWorld\\FragrantWorld.csproj|c:\\users\\koree\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\testwork\\fragrantworld\\fragrantworld\\classes\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{97A30D77-2C02-4FCD-8A21-8C89737E62F1}|FragrantWorld\\FragrantWorld.csproj|solutionrelative:fragrantworld\\classes\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{97A30D77-2C02-4FCD-8A21-8C89737E62F1}|FragrantWorld\\FragrantWorld.csproj|c:\\users\\koree\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\testwork\\fragrantworld\\fragrantworld\\assemblyinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{97A30D77-2C02-4FCD-8A21-8C89737E62F1}|FragrantWorld\\FragrantWorld.csproj|solutionrelative:fragrantworld\\assemblyinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{97A30D77-2C02-4FCD-8A21-8C89737E62F1}|FragrantWorld\\FragrantWorld.csproj|c:\\users\\koree\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\testwork\\fragrantworld\\fragrantworld\\classes\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{97A30D77-2C02-4FCD-8A21-8C89737E62F1}|FragrantWorld\\FragrantWorld.csproj|solutionrelative:fragrantworld\\classes\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{97A30D77-2C02-4FCD-8A21-8C89737E62F1}|FragrantWorld\\FragrantWorld.csproj|c:\\users\\koree\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\testwork\\fragrantworld\\fragrantworld\\classes\\dataaccesslayer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{97A30D77-2C02-4FCD-8A21-8C89737E62F1}|FragrantWorld\\FragrantWorld.csproj|c:\\users\\koree\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\examwork\\testwork\\fragrantworld\\fragrantworld\\classes\\dataaccesslayer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{97A30D77-2C02-4FCD-8A21-8C89737E62F1}|FragrantWorld\\FragrantWorld.csproj|solutionrelative:fragrantworld\\classes\\dataaccesslayer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{97A30D77-2C02-4FCD-8A21-8C89737E62F1}|FragrantWorld\\FragrantWorld.csproj|c:\\users\\koree\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\testwork\\fragrantworld\\fragrantworld\\classes\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{97A30D77-2C02-4FCD-8A21-8C89737E62F1}|FragrantWorld\\FragrantWorld.csproj|solutionrelative:fragrantworld\\classes\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{97A30D77-2C02-4FCD-8A21-8C89737E62F1}|FragrantWorld\\FragrantWorld.csproj|c:\\users\\koree\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\examwork\\testwork\\fragrantworld\\fragrantworld\\windows\\addproductwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{97A30D77-2C02-4FCD-8A21-8C89737E62F1}|FragrantWorld\\FragrantWorld.csproj|solutionrelative:fragrantworld\\windows\\addproductwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{97A30D77-2C02-4FCD-8A21-8C89737E62F1}|FragrantWorld\\FragrantWorld.csproj|c:\\users\\koree\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\testwork\\fragrantworld\\fragrantworld\\classes\\pickuppoint.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{97A30D77-2C02-4FCD-8A21-8C89737E62F1}|FragrantWorld\\FragrantWorld.csproj|solutionrelative:fragrantworld\\classes\\pickuppoint.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{97A30D77-2C02-4FCD-8A21-8C89737E62F1}|FragrantWorld\\FragrantWorld.csproj|c:\\users\\koree\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\testwork\\fragrantworld\\fragrantworld\\pages\\managerpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{97A30D77-2C02-4FCD-8A21-8C89737E62F1}|FragrantWorld\\FragrantWorld.csproj|solutionrelative:fragrantworld\\pages\\managerpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{97A30D77-2C02-4FCD-8A21-8C89737E62F1}|FragrantWorld\\FragrantWorld.csproj|c:\\users\\koree\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\testwork\\fragrantworld\\fragrantworld\\windows\\orderwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{97A30D77-2C02-4FCD-8A21-8C89737E62F1}|FragrantWorld\\FragrantWorld.csproj|solutionrelative:fragrantworld\\windows\\orderwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{97A30D77-2C02-4FCD-8A21-8C89737E62F1}|FragrantWorld\\FragrantWorld.csproj|c:\\users\\koree\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\testwork\\fragrantworld\\fragrantworld\\windows\\editproductwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{97A30D77-2C02-4FCD-8A21-8C89737E62F1}|FragrantWorld\\FragrantWorld.csproj|solutionrelative:fragrantworld\\windows\\editproductwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{97A30D77-2C02-4FCD-8A21-8C89737E62F1}|FragrantWorld\\FragrantWorld.csproj|c:\\users\\koree\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\testwork\\fragrantworld\\fragrantworld\\pages\\adminpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{97A30D77-2C02-4FCD-8A21-8C89737E62F1}|FragrantWorld\\FragrantWorld.csproj|solutionrelative:fragrantworld\\pages\\adminpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{97A30D77-2C02-4FCD-8A21-8C89737E62F1}|FragrantWorld\\FragrantWorld.csproj|c:\\users\\koree\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\testwork\\fragrantworld\\fragrantworld\\pages\\clientpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{97A30D77-2C02-4FCD-8A21-8C89737E62F1}|FragrantWorld\\FragrantWorld.csproj|solutionrelative:fragrantworld\\pages\\clientpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{97A30D77-2C02-4FCD-8A21-8C89737E62F1}|FragrantWorld\\FragrantWorld.csproj|c:\\users\\koree\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\testwork\\fragrantworld\\fragrantworld\\pages\\startpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{97A30D77-2C02-4FCD-8A21-8C89737E62F1}|FragrantWorld\\FragrantWorld.csproj|solutionrelative:fragrantworld\\pages\\startpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{97A30D77-2C02-4FCD-8A21-8C89737E62F1}|FragrantWorld\\FragrantWorld.csproj|c:\\users\\koree\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\testwork\\fragrantworld\\fragrantworld\\windows\\addproductwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "AbsoluteMoniker": "D:0:0:{97A30D77-2C02-4FCD-8A21-8C89737E62F1}|FragrantWorld\\FragrantWorld.csproj|c:\\users\\koree\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\examwork\\testwork\\fragrantworld\\fragrantworld\\windows\\addproductwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{97A30D77-2C02-4FCD-8A21-8C89737E62F1}|FragrantWorld\\FragrantWorld.csproj|solutionrelative:fragrantworld\\windows\\addproductwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{97A30D77-2C02-4FCD-8A21-8C89737E62F1}|FragrantWorld\\FragrantWorld.csproj|c:\\users\\koree\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\testwork\\fragrantworld\\fragrantworld\\windows\\editorderwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "AbsoluteMoniker": "D:0:0:{97A30D77-2C02-4FCD-8A21-8C89737E62F1}|FragrantWorld\\FragrantWorld.csproj|c:\\users\\koree\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\examwork\\testwork\\fragrantworld\\fragrantworld\\classes\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{97A30D77-2C02-4FCD-8A21-8C89737E62F1}|FragrantWorld\\FragrantWorld.csproj|solutionrelative:fragrantworld\\classes\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{97A30D77-2C02-4FCD-8A21-8C89737E62F1}|FragrantWorld\\FragrantWorld.csproj|c:\\users\\koree\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\examwork\\testwork\\fragrantworld\\fragrantworld\\classes\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{97A30D77-2C02-4FCD-8A21-8C89737E62F1}|FragrantWorld\\FragrantWorld.csproj|solutionrelative:fragrantworld\\classes\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{97A30D77-2C02-4FCD-8A21-8C89737E62F1}|FragrantWorld\\FragrantWorld.csproj|c:\\users\\koree\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\examwork\\testwork\\fragrantworld\\fragrantworld\\classes\\pickuppoint.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{97A30D77-2C02-4FCD-8A21-8C89737E62F1}|FragrantWorld\\FragrantWorld.csproj|solutionrelative:fragrantworld\\classes\\pickuppoint.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{97A30D77-2C02-4FCD-8A21-8C89737E62F1}|FragrantWorld\\FragrantWorld.csproj|c:\\users\\koree\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\examwork\\testwork\\fragrantworld\\fragrantworld\\classes\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{97A30D77-2C02-4FCD-8A21-8C89737E62F1}|FragrantWorld\\FragrantWorld.csproj|solutionrelative:fragrantworld\\classes\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{97A30D77-2C02-4FCD-8A21-8C89737E62F1}|FragrantWorld\\FragrantWorld.csproj|c:\\users\\koree\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\examwork\\testwork\\fragrantworld\\fragrantworld\\pages\\adminpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{97A30D77-2C02-4FCD-8A21-8C89737E62F1}|FragrantWorld\\FragrantWorld.csproj|solutionrelative:fragrantworld\\pages\\adminpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{97A30D77-2C02-4FCD-8A21-8C89737E62F1}|FragrantWorld\\FragrantWorld.csproj|c:\\users\\koree\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\examwork\\testwork\\fragrantworld\\fragrantworld\\assemblyinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{97A30D77-2C02-4FCD-8A21-8C89737E62F1}|FragrantWorld\\FragrantWorld.csproj|solutionrelative:fragrantworld\\assemblyinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{97A30D77-2C02-4FCD-8A21-8C89737E62F1}|FragrantWorld\\FragrantWorld.csproj|c:\\users\\koree\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\examwork\\testwork\\fragrantworld\\fragrantworld\\pages\\managerpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{97A30D77-2C02-4FCD-8A21-8C89737E62F1}|FragrantWorld\\FragrantWorld.csproj|solutionrelative:fragrantworld\\pages\\managerpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{97A30D77-2C02-4FCD-8A21-8C89737E62F1}|FragrantWorld\\FragrantWorld.csproj|c:\\users\\koree\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\examwork\\testwork\\fragrantworld\\fragrantworld\\windows\\orderwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{97A30D77-2C02-4FCD-8A21-8C89737E62F1}|FragrantWorld\\FragrantWorld.csproj|solutionrelative:fragrantworld\\windows\\orderwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{97A30D77-2C02-4FCD-8A21-8C89737E62F1}|FragrantWorld\\FragrantWorld.csproj|c:\\users\\koree\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\examwork\\testwork\\fragrantworld\\fragrantworld\\windows\\editproductwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{97A30D77-2C02-4FCD-8A21-8C89737E62F1}|FragrantWorld\\FragrantWorld.csproj|solutionrelative:fragrantworld\\windows\\editproductwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{97A30D77-2C02-4FCD-8A21-8C89737E62F1}|FragrantWorld\\FragrantWorld.csproj|c:\\users\\koree\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\examwork\\testwork\\fragrantworld\\fragrantworld\\pages\\clientpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{97A30D77-2C02-4FCD-8A21-8C89737E62F1}|FragrantWorld\\FragrantWorld.csproj|solutionrelative:fragrantworld\\pages\\clientpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{97A30D77-2C02-4FCD-8A21-8C89737E62F1}|FragrantWorld\\FragrantWorld.csproj|c:\\users\\koree\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\examwork\\testwork\\fragrantworld\\fragrantworld\\pages\\startpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{97A30D77-2C02-4FCD-8A21-8C89737E62F1}|FragrantWorld\\FragrantWorld.csproj|solutionrelative:fragrantworld\\pages\\startpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{97A30D77-2C02-4FCD-8A21-8C89737E62F1}|FragrantWorld\\FragrantWorld.csproj|c:\\users\\koree\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\examwork\\testwork\\fragrantworld\\fragrantworld\\windows\\editorderwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{97A30D77-2C02-4FCD-8A21-8C89737E62F1}|FragrantWorld\\FragrantWorld.csproj|solutionrelative:fragrantworld\\windows\\editorderwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{97A30D77-2C02-4FCD-8A21-8C89737E62F1}|FragrantWorld\\FragrantWorld.csproj|c:\\users\\koree\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\testwork\\fragrantworld\\fragrantworld\\windows\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "AbsoluteMoniker": "D:0:0:{97A30D77-2C02-4FCD-8A21-8C89737E62F1}|FragrantWorld\\FragrantWorld.csproj|c:\\users\\koree\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\examwork\\testwork\\fragrantworld\\fragrantworld\\windows\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{97A30D77-2C02-4FCD-8A21-8C89737E62F1}|FragrantWorld\\FragrantWorld.csproj|solutionrelative:fragrantworld\\windows\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{97A30D77-2C02-4FCD-8A21-8C89737E62F1}|FragrantWorld\\FragrantWorld.csproj|c:\\users\\koree\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\testwork\\fragrantworld\\fragrantworld\\windows\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{97A30D77-2C02-4FCD-8A21-8C89737E62F1}|FragrantWorld\\FragrantWorld.csproj|c:\\users\\koree\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\examwork\\testwork\\fragrantworld\\fragrantworld\\windows\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{97A30D77-2C02-4FCD-8A21-8C89737E62F1}|FragrantWorld\\FragrantWorld.csproj|solutionrelative:fragrantworld\\windows\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{97A30D77-2C02-4FCD-8A21-8C89737E62F1}|FragrantWorld\\FragrantWorld.csproj|c:\\users\\koree\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\testwork\\fragrantworld\\fragrantworld\\pages\\startpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{97A30D77-2C02-4FCD-8A21-8C89737E62F1}|FragrantWorld\\FragrantWorld.csproj|c:\\users\\koree\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\examwork\\testwork\\fragrantworld\\fragrantworld\\pages\\startpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{97A30D77-2C02-4FCD-8A21-8C89737E62F1}|FragrantWorld\\FragrantWorld.csproj|solutionrelative:fragrantworld\\pages\\startpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{97A30D77-2C02-4FCD-8A21-8C89737E62F1}|FragrantWorld\\FragrantWorld.csproj|c:\\users\\koree\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\testwork\\fragrantworld\\fragrantworld\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "AbsoluteMoniker": "D:0:0:{97A30D77-2C02-4FCD-8A21-8C89737E62F1}|FragrantWorld\\FragrantWorld.csproj|c:\\users\\koree\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\examwork\\testwork\\fragrantworld\\fragrantworld\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{97A30D77-2C02-4FCD-8A21-8C89737E62F1}|FragrantWorld\\FragrantWorld.csproj|solutionrelative:fragrantworld\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     }
   ],
@@ -82,99 +86,43 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 9,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "AssemblyInfo.cs",
-              "DocumentMoniker": "C:\\Users\\koree\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\TestWork\\FragrantWorld\\FragrantWorld\\AssemblyInfo.cs",
-              "RelativeDocumentMoniker": "FragrantWorld\\AssemblyInfo.cs",
-              "ToolTip": "C:\\Users\\koree\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\TestWork\\FragrantWorld\\FragrantWorld\\AssemblyInfo.cs",
-              "RelativeToolTip": "FragrantWorld\\AssemblyInfo.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Title": "AddProductWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\koree\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\ExamWork\\TestWork\\FragrantWorld\\FragrantWorld\\Windows\\AddProductWindow.xaml.cs",
+              "RelativeDocumentMoniker": "FragrantWorld\\Windows\\AddProductWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\koree\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\ExamWork\\TestWork\\FragrantWorld\\FragrantWorld\\Windows\\AddProductWindow.xaml.cs",
+              "RelativeToolTip": "FragrantWorld\\Windows\\AddProductWindow.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-14T20:12:44.467Z",
+              "WhenOpened": "2024-11-14T21:18:59.595Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "AddProductWindow.xaml",
-              "DocumentMoniker": "C:\\Users\\koree\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\TestWork\\FragrantWorld\\FragrantWorld\\Windows\\AddProductWindow.xaml",
-              "RelativeDocumentMoniker": "FragrantWorld\\Windows\\AddProductWindow.xaml",
-              "ToolTip": "C:\\Users\\koree\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\TestWork\\FragrantWorld\\FragrantWorld\\Windows\\AddProductWindow.xaml",
-              "RelativeToolTip": "FragrantWorld\\Windows\\AddProductWindow.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-06-24T13:32:35.582Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "EditOrderWindow.xaml",
-              "DocumentMoniker": "C:\\Users\\koree\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\TestWork\\FragrantWorld\\FragrantWorld\\Windows\\EditOrderWindow.xaml",
-              "RelativeDocumentMoniker": "FragrantWorld\\Windows\\EditOrderWindow.xaml",
-              "ToolTip": "C:\\Users\\koree\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\TestWork\\FragrantWorld\\FragrantWorld\\Windows\\EditOrderWindow.xaml",
-              "RelativeToolTip": "FragrantWorld\\Windows\\EditOrderWindow.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-06-24T13:32:35.015Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "MainWindow.xaml",
-              "DocumentMoniker": "C:\\Users\\koree\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\TestWork\\FragrantWorld\\FragrantWorld\\Windows\\MainWindow.xaml",
-              "RelativeDocumentMoniker": "FragrantWorld\\Windows\\MainWindow.xaml",
-              "ToolTip": "C:\\Users\\koree\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\TestWork\\FragrantWorld\\FragrantWorld\\Windows\\MainWindow.xaml",
-              "RelativeToolTip": "FragrantWorld\\Windows\\MainWindow.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-06-24T13:32:30.733Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "ClientPage.xaml",
-              "DocumentMoniker": "C:\\Users\\koree\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\TestWork\\FragrantWorld\\FragrantWorld\\Pages\\ClientPage.xaml",
-              "RelativeDocumentMoniker": "FragrantWorld\\Pages\\ClientPage.xaml",
-              "ToolTip": "C:\\Users\\koree\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\TestWork\\FragrantWorld\\FragrantWorld\\Pages\\ClientPage.xaml",
-              "RelativeToolTip": "FragrantWorld\\Pages\\ClientPage.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-06-24T13:59:54.066Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "AdminPage.xaml",
-              "DocumentMoniker": "C:\\Users\\koree\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\TestWork\\FragrantWorld\\FragrantWorld\\Pages\\AdminPage.xaml",
-              "RelativeDocumentMoniker": "FragrantWorld\\Pages\\AdminPage.xaml",
-              "ToolTip": "C:\\Users\\koree\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\TestWork\\FragrantWorld\\FragrantWorld\\Pages\\AdminPage.xaml",
-              "RelativeToolTip": "FragrantWorld\\Pages\\AdminPage.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-06-24T13:32:50.909Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
               "Title": "DataAccessLayer.cs",
-              "DocumentMoniker": "C:\\Users\\koree\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\TestWork\\FragrantWorld\\FragrantWorld\\Classes\\DataAccessLayer.cs",
+              "DocumentMoniker": "C:\\Users\\koree\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\ExamWork\\TestWork\\FragrantWorld\\FragrantWorld\\Classes\\DataAccessLayer.cs",
               "RelativeDocumentMoniker": "FragrantWorld\\Classes\\DataAccessLayer.cs",
-              "ToolTip": "C:\\Users\\koree\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\TestWork\\FragrantWorld\\FragrantWorld\\Classes\\DataAccessLayer.cs",
+              "ToolTip": "C:\\Users\\koree\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\ExamWork\\TestWork\\FragrantWorld\\FragrantWorld\\Classes\\DataAccessLayer.cs",
               "RelativeToolTip": "FragrantWorld\\Classes\\DataAccessLayer.cs",
-              "ViewState": "AgIAACEAAAAAAAAAAAAmwBMAAAAsAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAABtAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-24T13:32:40.372Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 6,
               "Title": "Order.cs",
-              "DocumentMoniker": "C:\\Users\\koree\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\TestWork\\FragrantWorld\\FragrantWorld\\Classes\\Order.cs",
+              "DocumentMoniker": "C:\\Users\\koree\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\ExamWork\\TestWork\\FragrantWorld\\FragrantWorld\\Classes\\Order.cs",
               "RelativeDocumentMoniker": "FragrantWorld\\Classes\\Order.cs",
-              "ToolTip": "C:\\Users\\koree\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\TestWork\\FragrantWorld\\FragrantWorld\\Classes\\Order.cs",
+              "ToolTip": "C:\\Users\\koree\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\ExamWork\\TestWork\\FragrantWorld\\FragrantWorld\\Classes\\Order.cs",
               "RelativeToolTip": "FragrantWorld\\Classes\\Order.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-24T13:32:44.196Z",
               "EditorCaption": ""
@@ -183,101 +131,176 @@
               "$type": "Document",
               "DocumentIndex": 5,
               "Title": "PickupPoint.cs",
-              "DocumentMoniker": "C:\\Users\\koree\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\TestWork\\FragrantWorld\\FragrantWorld\\Classes\\PickupPoint.cs",
+              "DocumentMoniker": "C:\\Users\\koree\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\ExamWork\\TestWork\\FragrantWorld\\FragrantWorld\\Classes\\PickupPoint.cs",
               "RelativeDocumentMoniker": "FragrantWorld\\Classes\\PickupPoint.cs",
-              "ToolTip": "C:\\Users\\koree\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\TestWork\\FragrantWorld\\FragrantWorld\\Classes\\PickupPoint.cs",
+              "ToolTip": "C:\\Users\\koree\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\ExamWork\\TestWork\\FragrantWorld\\FragrantWorld\\Classes\\PickupPoint.cs",
               "RelativeToolTip": "FragrantWorld\\Classes\\PickupPoint.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-24T13:32:47.512Z"
+              "WhenOpened": "2024-06-24T13:32:47.512Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 4,
               "Title": "Product.cs",
-              "DocumentMoniker": "C:\\Users\\koree\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\TestWork\\FragrantWorld\\FragrantWorld\\Classes\\Product.cs",
+              "DocumentMoniker": "C:\\Users\\koree\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\ExamWork\\TestWork\\FragrantWorld\\FragrantWorld\\Classes\\Product.cs",
               "RelativeDocumentMoniker": "FragrantWorld\\Classes\\Product.cs",
-              "ToolTip": "C:\\Users\\koree\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\TestWork\\FragrantWorld\\FragrantWorld\\Classes\\Product.cs",
+              "ToolTip": "C:\\Users\\koree\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\ExamWork\\TestWork\\FragrantWorld\\FragrantWorld\\Classes\\Product.cs",
               "RelativeToolTip": "FragrantWorld\\Classes\\Product.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-24T13:32:49.657Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 3,
+              "Title": "User.cs",
+              "DocumentMoniker": "C:\\Users\\koree\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\ExamWork\\TestWork\\FragrantWorld\\FragrantWorld\\Classes\\User.cs",
+              "RelativeDocumentMoniker": "FragrantWorld\\Classes\\User.cs",
+              "ToolTip": "C:\\Users\\koree\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\ExamWork\\TestWork\\FragrantWorld\\FragrantWorld\\Classes\\User.cs",
+              "RelativeToolTip": "FragrantWorld\\Classes\\User.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-24T13:32:50.192Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "AddProductWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\koree\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\ExamWork\\TestWork\\FragrantWorld\\FragrantWorld\\Windows\\AddProductWindow.xaml",
+              "RelativeDocumentMoniker": "FragrantWorld\\Windows\\AddProductWindow.xaml",
+              "ToolTip": "C:\\Users\\koree\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\ExamWork\\TestWork\\FragrantWorld\\FragrantWorld\\Windows\\AddProductWindow.xaml",
+              "RelativeToolTip": "FragrantWorld\\Windows\\AddProductWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2024-06-24T13:32:35.582Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "EditOrderWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\koree\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\ExamWork\\TestWork\\FragrantWorld\\FragrantWorld\\Windows\\EditOrderWindow.xaml",
+              "RelativeDocumentMoniker": "FragrantWorld\\Windows\\EditOrderWindow.xaml",
+              "ToolTip": "C:\\Users\\koree\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\ExamWork\\TestWork\\FragrantWorld\\FragrantWorld\\Windows\\EditOrderWindow.xaml",
+              "RelativeToolTip": "FragrantWorld\\Windows\\EditOrderWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2024-06-24T13:32:35.015Z"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "AssemblyInfo.cs",
+              "DocumentMoniker": "C:\\Users\\koree\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\ExamWork\\TestWork\\FragrantWorld\\FragrantWorld\\AssemblyInfo.cs",
+              "RelativeDocumentMoniker": "FragrantWorld\\AssemblyInfo.cs",
+              "ToolTip": "C:\\Users\\koree\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\ExamWork\\TestWork\\FragrantWorld\\FragrantWorld\\AssemblyInfo.cs",
+              "RelativeToolTip": "FragrantWorld\\AssemblyInfo.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-14T20:12:44.467Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "MainWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\koree\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\ExamWork\\TestWork\\FragrantWorld\\FragrantWorld\\Windows\\MainWindow.xaml",
+              "RelativeDocumentMoniker": "FragrantWorld\\Windows\\MainWindow.xaml",
+              "ToolTip": "C:\\Users\\koree\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\ExamWork\\TestWork\\FragrantWorld\\FragrantWorld\\Windows\\MainWindow.xaml",
+              "RelativeToolTip": "FragrantWorld\\Windows\\MainWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2024-06-24T13:32:30.733Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "ClientPage.xaml",
+              "DocumentMoniker": "C:\\Users\\koree\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\ExamWork\\TestWork\\FragrantWorld\\FragrantWorld\\Pages\\ClientPage.xaml",
+              "RelativeDocumentMoniker": "FragrantWorld\\Pages\\ClientPage.xaml",
+              "ToolTip": "C:\\Users\\koree\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\ExamWork\\TestWork\\FragrantWorld\\FragrantWorld\\Pages\\ClientPage.xaml",
+              "RelativeToolTip": "FragrantWorld\\Pages\\ClientPage.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2024-06-24T13:59:54.066Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "AdminPage.xaml",
+              "DocumentMoniker": "C:\\Users\\koree\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\ExamWork\\TestWork\\FragrantWorld\\FragrantWorld\\Pages\\AdminPage.xaml",
+              "RelativeDocumentMoniker": "FragrantWorld\\Pages\\AdminPage.xaml",
+              "ToolTip": "C:\\Users\\koree\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\ExamWork\\TestWork\\FragrantWorld\\FragrantWorld\\Pages\\AdminPage.xaml",
+              "RelativeToolTip": "FragrantWorld\\Pages\\AdminPage.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2024-06-24T13:32:50.909Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
               "Title": "ManagerPage.xaml",
-              "DocumentMoniker": "C:\\Users\\koree\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\TestWork\\FragrantWorld\\FragrantWorld\\Pages\\ManagerPage.xaml",
+              "DocumentMoniker": "C:\\Users\\koree\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\ExamWork\\TestWork\\FragrantWorld\\FragrantWorld\\Pages\\ManagerPage.xaml",
               "RelativeDocumentMoniker": "FragrantWorld\\Pages\\ManagerPage.xaml",
-              "ToolTip": "C:\\Users\\koree\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\TestWork\\FragrantWorld\\FragrantWorld\\Pages\\ManagerPage.xaml",
+              "ToolTip": "C:\\Users\\koree\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\ExamWork\\TestWork\\FragrantWorld\\FragrantWorld\\Pages\\ManagerPage.xaml",
               "RelativeToolTip": "FragrantWorld\\Pages\\ManagerPage.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
               "WhenOpened": "2024-06-24T13:32:51.852Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "User.cs",
-              "DocumentMoniker": "C:\\Users\\koree\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\TestWork\\FragrantWorld\\FragrantWorld\\Classes\\User.cs",
-              "RelativeDocumentMoniker": "FragrantWorld\\Classes\\User.cs",
-              "ToolTip": "C:\\Users\\koree\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\TestWork\\FragrantWorld\\FragrantWorld\\Classes\\User.cs",
-              "RelativeToolTip": "FragrantWorld\\Classes\\User.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-24T13:32:50.192Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 13,
               "Title": "StartPage.xaml",
-              "DocumentMoniker": "C:\\Users\\koree\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\TestWork\\FragrantWorld\\FragrantWorld\\Pages\\StartPage.xaml",
+              "DocumentMoniker": "C:\\Users\\koree\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\ExamWork\\TestWork\\FragrantWorld\\FragrantWorld\\Pages\\StartPage.xaml",
               "RelativeDocumentMoniker": "FragrantWorld\\Pages\\StartPage.xaml",
-              "ToolTip": "C:\\Users\\koree\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\TestWork\\FragrantWorld\\FragrantWorld\\Pages\\StartPage.xaml",
+              "ToolTip": "C:\\Users\\koree\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\ExamWork\\TestWork\\FragrantWorld\\FragrantWorld\\Pages\\StartPage.xaml",
               "RelativeToolTip": "FragrantWorld\\Pages\\StartPage.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
               "WhenOpened": "2024-06-24T13:32:52.413Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 10,
               "Title": "OrderWindow.xaml",
-              "DocumentMoniker": "C:\\Users\\koree\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\TestWork\\FragrantWorld\\FragrantWorld\\Windows\\OrderWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\koree\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\ExamWork\\TestWork\\FragrantWorld\\FragrantWorld\\Windows\\OrderWindow.xaml",
               "RelativeDocumentMoniker": "FragrantWorld\\Windows\\OrderWindow.xaml",
-              "ToolTip": "C:\\Users\\koree\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\TestWork\\FragrantWorld\\FragrantWorld\\Windows\\OrderWindow.xaml",
+              "ToolTip": "C:\\Users\\koree\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\ExamWork\\TestWork\\FragrantWorld\\FragrantWorld\\Windows\\OrderWindow.xaml",
               "RelativeToolTip": "FragrantWorld\\Windows\\OrderWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
               "WhenOpened": "2024-06-24T13:32:32.607Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 11,
               "Title": "EditProductWindow.xaml",
-              "DocumentMoniker": "C:\\Users\\koree\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\TestWork\\FragrantWorld\\FragrantWorld\\Windows\\EditProductWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\koree\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\ExamWork\\TestWork\\FragrantWorld\\FragrantWorld\\Windows\\EditProductWindow.xaml",
               "RelativeDocumentMoniker": "FragrantWorld\\Windows\\EditProductWindow.xaml",
-              "ToolTip": "C:\\Users\\koree\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\TestWork\\FragrantWorld\\FragrantWorld\\Windows\\EditProductWindow.xaml",
+              "ToolTip": "C:\\Users\\koree\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\ExamWork\\TestWork\\FragrantWorld\\FragrantWorld\\Windows\\EditProductWindow.xaml",
               "RelativeToolTip": "FragrantWorld\\Windows\\EditProductWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
               "WhenOpened": "2024-06-24T13:32:34.313Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 18,
               "Title": "App.xaml",
-              "DocumentMoniker": "C:\\Users\\koree\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\TestWork\\FragrantWorld\\FragrantWorld\\App.xaml",
+              "DocumentMoniker": "C:\\Users\\koree\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\ExamWork\\TestWork\\FragrantWorld\\FragrantWorld\\App.xaml",
               "RelativeDocumentMoniker": "FragrantWorld\\App.xaml",
-              "ToolTip": "C:\\Users\\koree\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\TestWork\\FragrantWorld\\FragrantWorld\\App.xaml",
+              "ToolTip": "C:\\Users\\koree\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\ExamWork\\TestWork\\FragrantWorld\\FragrantWorld\\App.xaml",
               "RelativeToolTip": "FragrantWorld\\App.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-10-07T20:53:14.954Z"
+              "WhenOpened": "2024-10-07T20:53:14.954Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 16,
               "Title": "MainWindow.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\koree\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\TestWork\\FragrantWorld\\FragrantWorld\\Windows\\MainWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\koree\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\ExamWork\\TestWork\\FragrantWorld\\FragrantWorld\\Windows\\MainWindow.xaml.cs",
               "RelativeDocumentMoniker": "FragrantWorld\\Windows\\MainWindow.xaml.cs",
-              "ToolTip": "C:\\Users\\koree\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\TestWork\\FragrantWorld\\FragrantWorld\\Windows\\MainWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\koree\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\ExamWork\\TestWork\\FragrantWorld\\FragrantWorld\\Windows\\MainWindow.xaml.cs",
               "RelativeToolTip": "FragrantWorld\\Windows\\MainWindow.xaml.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -285,11 +308,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 17,
               "Title": "StartPage.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\koree\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\TestWork\\FragrantWorld\\FragrantWorld\\Pages\\StartPage.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\koree\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\ExamWork\\TestWork\\FragrantWorld\\FragrantWorld\\Pages\\StartPage.xaml.cs",
               "RelativeDocumentMoniker": "FragrantWorld\\Pages\\StartPage.xaml.cs",
-              "ToolTip": "C:\\Users\\koree\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\TestWork\\FragrantWorld\\FragrantWorld\\Pages\\StartPage.xaml.cs",
+              "ToolTip": "C:\\Users\\koree\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\ExamWork\\TestWork\\FragrantWorld\\FragrantWorld\\Pages\\StartPage.xaml.cs",
               "RelativeToolTip": "FragrantWorld\\Pages\\StartPage.xaml.cs",
               "ViewState": "AgIAAB0AAAAAAAAAAAAYwDkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",

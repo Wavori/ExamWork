@@ -1829,19 +1829,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\koree\\.nuget\\packages\\": {}
+    "C:\\Users\\koree\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\koree\\OneDrive\\Рабочий стол\\TestWork\\FragrantWorld\\FragrantWorld\\FragrantWorld.csproj",
+      "projectUniqueName": "C:\\Users\\koree\\OneDrive\\Рабочий стол\\ExamWork\\TestWork\\FragrantWorld\\FragrantWorld\\FragrantWorld.csproj",
       "projectName": "FragrantWorld",
-      "projectPath": "C:\\Users\\koree\\OneDrive\\Рабочий стол\\TestWork\\FragrantWorld\\FragrantWorld\\FragrantWorld.csproj",
+      "projectPath": "C:\\Users\\koree\\OneDrive\\Рабочий стол\\ExamWork\\TestWork\\FragrantWorld\\FragrantWorld\\FragrantWorld.csproj",
       "packagesPath": "C:\\Users\\koree\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\koree\\OneDrive\\Рабочий стол\\TestWork\\FragrantWorld\\FragrantWorld\\obj\\",
+      "outputPath": "C:\\Users\\koree\\OneDrive\\Рабочий стол\\ExamWork\\TestWork\\FragrantWorld\\FragrantWorld\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
         "C:\\Users\\koree\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -1849,7 +1854,6 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -1866,8 +1870,9 @@
       "restoreAuditProperties": {
         "enableAudit": "true",
         "auditLevel": "low",
-        "auditMode": "direct"
-      }
+        "auditMode": "all"
+      },
+      "SdkAnalysisLevel": "9.0.100"
     },
     "frameworks": {
       "net8.0-windows7.0": {
@@ -1897,8 +1902,30 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.100/PortableRuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1902",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "У пакета \"Azure.Identity\" 1.11.3 есть известная уязвимость https://github.com/advisories/GHSA-m5vv-6r4h-3vj9 (уровень серьезности: средний)",
+      "libraryId": "Azure.Identity",
+      "targetGraphs": [
+        "net8.0-windows7.0"
+      ]
+    },
+    {
+      "code": "NU1902",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "У пакета \"Microsoft.Identity.Client\" 4.60.3 есть известная уязвимость https://github.com/advisories/GHSA-m5vv-6r4h-3vj9 (уровень серьезности: средний)",
+      "libraryId": "Microsoft.Identity.Client",
+      "targetGraphs": [
+        "net8.0-windows7.0"
+      ]
+    }
+  ]
 }
