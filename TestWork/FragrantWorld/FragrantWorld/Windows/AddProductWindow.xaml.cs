@@ -68,12 +68,12 @@ namespace FragrantWorld
                 e.Cancel = true;
         }
 
-        private void TextBox_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
+        private void TextBox_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)  
         {
             if (!char.IsDigit(e.Text, 0))
             {
                 e.Handled = true;
             }
-        }
+        }//Этот метод позволяет вводить в текстовое поле только цифровые символы. Если пользователь пытается ввести любой другой символ, ввод будет отклонен, и символ не появится в текстовом поле.
     }
 }
