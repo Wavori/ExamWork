@@ -1,91 +1,31 @@
-using System;
-using System.IO;
-using System.Windows;
-using System.Windows.Forms;
+<Window x:Class="FileSearchApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="File Search" Height="450" Width="525">
+    <Grid>
+        <StackPanel Margin="10">
+            <TextBlock Text="Укажите часть имени файла:" Margin="0,0,0,5"/>
+            <TextBox x:Name="FileNamePartTextBox" Width="200" Margin="0,0,0,10"/>
 
-namespace FileSearchApp
-{
-    public partial class MainWindow : Window
-    {
-        public MainWindow()
-        {
-            InitializeComponent();
-            SelectedFolderLabel.Text = "Текущая папка: " + Environment.CurrentDirectory;
-        }
+            <Button Content="Выбрать каталог" Click="SelectFolderButton_Click" Margin="0,0,0,10"/>
+            <TextBlock x:Name="SelectedFolderLabel" Text="Текущая папка: " Margin="0,0,0,10"/>
 
-        private void SelectFolderButton_Click(object sender, RoutedEventArgs e)
-        {
-            using (var dialog = new FolderBrowserDialog())
-            {
-                DialogResult result = dialog.ShowDialog();
+            <RadioButton x:Name="SearchCurrentFolderOnly" Content="Искать только в указанной папке" IsChecked="True" Margin="0,0,0,10"/>
+            <RadioButton x:Name="SearchAllFolders" Content="Искать в указанной папке и вложенных" Margin="0,0,0,10"/>
 
-                if (result == System.Windows.Forms.DialogResult.OK && !string.IsNullOrWhiteSpace(dialog.SelectedPath))
-                {
-                    SelectedFolderLabel.Text = "Текущая папка: " + dialog.SelectedPath;
-                }
-            }
-        }
+            <CheckBox x:Name="ConsiderFileSizeCheckBox" Content="Учитывать размер файла" Checked="ConsiderFileSizeCheckBox_Checked" Unchecked="ConsiderFileSizeCheckBox_Unchecked" Margin="0,0,0,10"/>
 
-        private void ConsiderFileSizeCheckBox_Checked(object sender, RoutedEventArgs e)
-        {
-            MinFileSizeTextBox.IsEnabled = true;
-            MaxFileSizeTextBox.IsEnabled = true;
-        }
+            <TextBlock Text="Минимальный размер файла (КБ):" Margin="0,0,0,5"/>
+            <TextBox x:Name="MinFileSizeTextBox" Width="200" Margin="0,0,0,10" IsEnabled="False"/>
 
-        private void ConsiderFileSizeCheckBox_Unchecked(object sender, RoutedEventArgs e)
-        {
-            MinFileSizeTextBox.IsEnabled = false;
-            MaxFileSizeTextBox.IsEnabled = false;
-        }
+            <TextBlock Text="Максимальный размер файла (КБ):" Margin="0,0,0,5"/>
+            <TextBox x:Name="MaxFileSizeTextBox" Width="200" Margin="0,0,0,10" IsEnabled="False"/>
 
-        private void FindButton_Click(object sender, RoutedEventArgs e)
-        {
-            string folderPath = SelectedFolderLabel.Text.Replace("Текущая папка: ", "").Trim();
-            string fileNamePart = FileNamePartTextBox.Text.Trim();
+            <CheckBox x:Name="ConsiderCreationDateCheckBox" Content="Учитывать дату создания" Checked="ConsiderCreationDateCheckBox_Checked" Unchecked="ConsiderCreationDateCheckBox_Unchecked" Margin="0,0,0,10"/>
 
-            if (string.IsNullOrWhiteSpace(folderPath) || string.IsNullOrWhiteSpace(fileNamePart))
-            {
-                System.Windows.MessageBox.Show("Пожалуйста, укажите каталог и часть имени файла.");
-                return;
-            }
+            <TextBlock Text="Самая ранняя дата создания:" Margin="0,0,0,5"/>
+            <DatePicker x:Name="CreationDatePicker" Width="200" Margin="0,0,0,10" IsEnabled="False"/>
 
-            ResultsListBox.Items.Clear();
+            <Button Content="Найти" Click="FindButton_Click" Margin="0,0,0,10"/>
 
-            SearchOption searchOption = SearchCurrentFolderOnly.IsChecked == true ? SearchOption.TopDirectoryOnly : SearchOption.AllDirectories;
-
-            try
-            {
-                var files = Directory.GetFiles(folderPath, $"*{fileNamePart}*", searchOption);
-                foreach (var file in files)
-                {
-                    if (ConsiderFileSizeCheckBox.IsChecked == true)
-                    {
-                        if (double.TryParse(MinFileSizeTextBox.Text, out double minSize) &&
-                            double.TryParse(MaxFileSizeTextBox.Text, out double maxSize))
-                        {
-                            var fileInfo = new FileInfo(file);
-                            double fileSizeKB = fileInfo.Length / 1024.0;
-                            if (fileSizeKB >= minSize && fileSizeKB <= maxSize)
-                            {
-                                ResultsListBox.Items.Add(file);
-                            }
-                        }
-                        else
-                        {
-                            System.Windows.MessageBox.Show("Пожалуйста, введите корректные значения для минимального и максимального размера файла.");
-                            return;
-                        }
-                    }
-                    else
-                    {
-                        ResultsListBox.Items.Add(file);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                System.Windows.MessageBox.Show($"Ошибка при поиске файлов: {ex.Message}");
-            }
-        }
-    }
-}
+  
