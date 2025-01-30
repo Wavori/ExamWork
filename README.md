@@ -1,117 +1,36 @@
 using System;
 using System.IO;
-using System.Windows;
-using System.Windows.Forms;
 
-namespace FileSearchApp
+class Program
 {
-    public partial class MainWindow : Window
+    static void Main()
     {
-        public MainWindow()
-        {
-            InitializeComponent();
-            SelectedFolderLabel.Text = "Текущая папка: " + Environment.CurrentDirectory;
-        }
+        Console.Write("Введите имя каталога: ");
+        string directoryPath = Console.ReadLine();
 
-        private void SelectFolderButton_Click(object sender, RoutedEventArgs e)
+        if (Directory.Exists(directoryPath))
         {
-            using (var dialog = new FolderBrowserDialog())
+            string[] files = Directory.GetFiles(directoryPath);
+
+            foreach (string file in files)
             {
-                DialogResult result = dialog.ShowDialog();
+                string extension = Path.GetExtension(file).TrimStart('.').ToUpper();
+                string destinationFolder = Path.Combine(directoryPath, extension);
 
-                if (result == System.Windows.Forms.DialogResult.OK && !string.IsNullOrWhiteSpace(dialog.SelectedPath))
+                if (!Directory.Exists(destinationFolder))
                 {
-                    SelectedFolderLabel.Text = "Текущая папка: " + dialog.SelectedPath;
+                    Directory.CreateDirectory(destinationFolder);
                 }
-            }
-        }
 
-        private void ConsiderFileSizeCheckBox_Checked(object sender, RoutedEventArgs e)
-        {
-            MinFileSizeTextBox.IsEnabled = true;
-            MaxFileSizeTextBox.IsEnabled = true;
-        }
-
-        private void ConsiderFileSizeCheckBox_Unchecked(object sender, RoutedEventArgs e)
-        {
-            MinFileSizeTextBox.IsEnabled = false;
-            MaxFileSizeTextBox.IsEnabled = false;
-        }
-
-        private void ConsiderCreationDateCheckBox_Checked(object sender, RoutedEventArgs e)
-        {
-            CreationDatePicker.IsEnabled = true;
-        }
-
-        private void ConsiderCreationDateCheckBox_Unchecked(object sender, RoutedEventArgs e)
-        {
-            CreationDatePicker.IsEnabled = false;
-        }
-
-        private void FindButton_Click(object sender, RoutedEventArgs e)
-        {
-            string folderPath = SelectedFolderLabel.Text.Replace("Текущая папка: ", "").Trim();
-            string fileNamePart = FileNamePartTextBox.Text.Trim();
-
-            if (string.IsNullOrWhiteSpace(folderPath) || string.IsNullOrWhiteSpace(fileNamePart))
-            {
-                System.Windows.MessageBox.Show("Пожалуйста, укажите каталог и часть имени файла.");
-                return;
+                string destinationFile = Path.Combine(destinationFolder, Path.GetFileName(file));
+                File.Move(file, destinationFile);
             }
 
-            ResultsListBox.Items.Clear();
-
-            SearchOption searchOption = SearchCurrentFolderOnly.IsChecked == true ? SearchOption.TopDirectoryOnly : SearchOption.AllDirectories;
-
-            try
-            {
-                var files = Directory.GetFiles(folderPath, $"*{fileNamePart}*", searchOption);
-                foreach (var file in files)
-                {
-                    bool includeFile = true;
-
-                    if (ConsiderFileSizeCheckBox.IsChecked == true)
-                    {
-                        if (double.TryParse(MinFileSizeTextBox.Text, out double minSize) &&
-                            double.TryParse(MaxFileSizeTextBox.Text, out double maxSize))
-                        {
-                            var fileInfo = new FileInfo(file);
-                            double fileSizeKB = fileInfo.Length / 1024.0;
-                            if (fileSizeKB < minSize || fileSizeKB > maxSize)
-                            {
-                                includeFile = false;
-                            }
-                        }
-                        else
-                        {
-                            System.Windows.MessageBox.Show("Пожалуйста, введите корректные значения для минимального и максимального размера файла.");
-                            return;
-                        }
-                    }
-
-                    if (ConsiderCreationDateCheckBox.IsChecked == true)
-                    {
-                        DateTime? creationDate = CreationDatePicker.SelectedDate;
-                        if (creationDate.HasValue)
-                        {
-                            var fileInfo = new FileInfo(file);
-                            if (fileInfo.CreationTime < creationDate.Value)
-                            {
-                                includeFile = false;
-                            }
-                        }
-                    }
-
-                    if (includeFile)
-                    {
-                        ResultsListBox.Items.Add(file);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                System.Windows.MessageBox.Show($"Ошибка при поиске файлов: {ex.Message}");
-            }
+            Console.WriteLine("Файлы успешно отсортированы по расширениям.");
+        }
+        else
+        {
+            Console.WriteLine("Указанный каталог не существует.");
         }
     }
 }
