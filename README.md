@@ -1,1 +1,65 @@
 
+using System;
+using System.IO;
+
+class Program
+{
+    static void Main()
+    {
+        Console.Write("Введите имя исходного каталога: ");
+        string sourceDirectory = Console.ReadLine();
+
+        Console.Write("Введите имя целевого каталога: ");
+        string destinationDirectory = Console.ReadLine();
+
+        if (Directory.Exists(sourceDirectory))
+        {
+            string[] files = Directory.GetFiles(sourceDirectory);
+
+            foreach (string file in files)
+            {
+                string extension = Path.GetExtension(file).TrimStart('.').ToLower();
+                string destinationFolder = GetDestinationFolder(destinationDirectory, extension);
+
+                if (!Directory.Exists(destinationFolder))
+                {
+                    Directory.CreateDirectory(destinationFolder);
+                }
+
+                string destinationFile = Path.Combine(destinationFolder, Path.GetFileName(file));
+                File.Copy(file, destinationFile, true);
+            }
+
+            Console.WriteLine("Файлы успешно скопированы и отсортированы по типам.");
+        }
+        else
+        {
+            Console.WriteLine("Исходный каталог не существует.");
+        }
+    }
+
+    static string GetDestinationFolder(string destinationDirectory, string extension)
+    {
+        switch (extension)
+        {
+            case "zip":
+            case "rar":
+            case "7z":
+                return Path.Combine(destinationDirectory, "архивы");
+            case "jpeg":
+            case "jpg":
+            case "bmp":
+            case "png":
+            case "gif":
+                return Path.Combine(destinationDirectory, "изображения");
+            case "txt":
+            case "rtf":
+            case "odt":
+            case "doc":
+            case "docx":
+                return Path.Combine(destinationDirectory, "текстовые документы");
+            default:
+                return Path.Combine(destinationDirectory, "другое");
+        }
+    }
+}
