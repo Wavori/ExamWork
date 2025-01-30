@@ -1,0 +1,30 @@
+using System;
+using System.IO;
+
+Console.Write("Введите имя каталога: ");
+string directoryPath = Console.ReadLine();
+
+if (Directory.Exists(directoryPath))
+{
+    string[] files = Directory.GetFiles(directoryPath);
+
+    foreach (string file in files)
+    {
+        DateTime lastWriteTime = File.GetLastWriteTime(file);
+        string destinationFolder = Path.Combine(directoryPath, lastWriteTime.Year.ToString(), lastWriteTime.Month.ToString(), lastWriteTime.Day.ToString());
+
+        if (!Directory.Exists(destinationFolder))
+        {
+            Directory.CreateDirectory(destinationFolder);
+        }
+
+        string destinationFile = Path.Combine(destinationFolder, Path.GetFileName(file));
+        File.Move(file, destinationFile);
+    }
+
+    Console.WriteLine("Файлы успешно отсортированы по дате изменения.");
+}
+else
+{
+    Console.WriteLine("Указанный каталог не существует.");
+}
