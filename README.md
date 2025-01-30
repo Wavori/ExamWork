@@ -1,4 +1,3 @@
-
 using System;
 using System.IO;
 
@@ -6,20 +5,17 @@ class Program
 {
     static void Main()
     {
-        Console.Write("Введите имя исходного каталога: ");
-        string sourceDirectory = Console.ReadLine();
+        Console.Write("Введите имя каталога: ");
+        string directoryPath = Console.ReadLine();
 
-        Console.Write("Введите имя целевого каталога: ");
-        string destinationDirectory = Console.ReadLine();
-
-        if (Directory.Exists(sourceDirectory))
+        if (Directory.Exists(directoryPath))
         {
-            string[] files = Directory.GetFiles(sourceDirectory);
+            string[] files = Directory.GetFiles(directoryPath);
 
             foreach (string file in files)
             {
-                string extension = Path.GetExtension(file).TrimStart('.').ToLower();
-                string destinationFolder = GetDestinationFolder(destinationDirectory, extension);
+                DateTime lastWriteTime = File.GetLastWriteTime(file);
+                string destinationFolder = Path.Combine(directoryPath, lastWriteTime.Year.ToString(), lastWriteTime.Month.ToString(), lastWriteTime.Day.ToString());
 
                 if (!Directory.Exists(destinationFolder))
                 {
@@ -27,39 +23,14 @@ class Program
                 }
 
                 string destinationFile = Path.Combine(destinationFolder, Path.GetFileName(file));
-                File.Copy(file, destinationFile, true);
+                File.Move(file, destinationFile);
             }
 
-            Console.WriteLine("Файлы успешно скопированы и отсортированы по типам.");
+            Console.WriteLine("Файлы успешно отсортированы по дате изменения.");
         }
         else
         {
-            Console.WriteLine("Исходный каталог не существует.");
-        }
-    }
-
-    static string GetDestinationFolder(string destinationDirectory, string extension)
-    {
-        switch (extension)
-        {
-            case "zip":
-            case "rar":
-            case "7z":
-                return Path.Combine(destinationDirectory, "архивы");
-            case "jpeg":
-            case "jpg":
-            case "bmp":
-            case "png":
-            case "gif":
-                return Path.Combine(destinationDirectory, "изображения");
-            case "txt":
-            case "rtf":
-            case "odt":
-            case "doc":
-            case "docx":
-                return Path.Combine(destinationDirectory, "текстовые документы");
-            default:
-                return Path.Combine(destinationDirectory, "другое");
+            Console.WriteLine("Указанный каталог не существует.");
         }
     }
 }
