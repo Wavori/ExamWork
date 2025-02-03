@@ -1,52 +1,35 @@
 fun main() {
-    // Создание словаря
-    val countryCodes = mutableMapOf<String, String>()
+    // Создание наборов студентов
+    val studentsRetake1 = mutableSetOf<String>()
+    val studentsRetake2 = mutableSetOf<String>()
 
-    // Заполнение словаря программно
-    countryCodes["RU"] = "Россия"
-    countryCodes["US"] = "США"
-    countryCodes["FR"] = "Франция"
-
-    // Заполнение словаря с клавиатуры
-    println("Введите количество стран для добавления: ")
-    val n = readLine()?.toIntOrNull() ?: 0
-    for (i in 1..n) {
-        println("Введите двухбуквенный код страны $i: ")
-        val code = readLine() ?: ""
-        println("Введите название страны $i: ")
-        val country = readLine() ?: ""
-        countryCodes[code] = country
+    // Заполнение набора студентов, не сдавших зачет у преподавателя 1
+    println("Введите количество студентов, не сдавших зачет у преподавателя 1: ")
+    val n1 = readLine()?.toIntOrNull() ?: 0
+    for (i in 1..n1) {
+        println("Введите ФИО студента $i: ")
+        val student = readLine() ?: ""
+        studentsRetake1.add(student)
     }
 
-    // Проверка наличия ключа в словаре и вывод значения
-    println("Введите двухбуквенный код страны для поиска: ")
-    val searchCode = readLine() ?: ""
-    if (countryCodes.containsKey(searchCode)) {
-        println("Страна с кодом $searchCode: ${countryCodes[searchCode]}")
-    } else {
-        println("Страна с кодом $searchCode не найдена в словаре.")
+    // Заполнение набора студентов, не сдавших зачет у преподавателя 2
+    println("Введите количество студентов, не сдавших зачет у преподавателя 2: ")
+    val n2 = readLine()?.toIntOrNull() ?: 0
+    for (i in 1..n2) {
+        println("Введите ФИО студента $i: ")
+        val student = readLine() ?: ""
+        studentsRetake2.add(student)
     }
 
-    // Подсчет количества совпадений значения
-    println("Введите название страны для поиска совпадений: ")
-    val searchCountry = readLine() ?: ""
-    val countMatches = countryCodes.values.count { it == searchCountry }
-    println("Количество совпадений для страны $searchCountry: $countMatches")
+    // Определение общего количества студентов, отправленных на пересдачу
+    val allStudents = studentsRetake1.union(studentsRetake2)
+    println("Всего студентов было отправлено на пересдачу: ${allStudents.size}")
 
-    // Удаление элемента по ключу и вывод содержимого словаря
-    println("Введите двухбуквенный код страны для удаления: ")
-    val removeCode = readLine() ?: ""
-    if (countryCodes.containsKey(removeCode)) {
-        countryCodes.remove(removeCode)
-        println("Элемент с кодом $removeCode удален.")
-    } else {
-        println("Элемент с кодом $removeCode не найден в словаре.")
-    }
+    // Определение количества студентов, не сдавших оба зачета
+    val bothFailed = studentsRetake1.intersect(studentsRetake2)
+    println("Студенты, не сдавшие оба зачета: ${bothFailed.size}")
 
-    // Вывод содержимого словаря после удаления
-    println("Содержимое словаря после удаления:")
-    for ((code, country) in countryCodes) {
-        println("$code - $country")
-    }
-    println("Количество элементов в словаре: ${countryCodes.size}")
+    // Определение количества студентов, не сдавших только один зачет
+    val oneFailed = allStudents.subtract(bothFailed)
+    println("Студенты, не сдавшие только один зачет: ${oneFailed.size}")
 }
