@@ -1,24 +1,80 @@
-<Window x:Class="DuplicateFinder.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Duplicate Finder" Height="450" Width="800">
-    <Grid>
-        <TextBox x:Name="DirectoryPathTextBox" Width="600" Height="30" Margin="10" VerticalAlignment="Top" PlaceholderText="Enter directory path"/>
-        <Button x:Name="SearchButton" Content="Search" Width="100" Height="30" Margin="620,10,10,0" VerticalAlignment="Top" Click="SearchButton_Click"/>
-        <CheckBox x:Name="NameCheckBox" Content="Name" Margin="10,50,0,0" VerticalAlignment="Top"/>
-        <CheckBox x:Name="SizeCheckBox" Content="Size" Margin="100,50,0,0" VerticalAlignment="Top"/>
-        <CheckBox x:Name="DateCheckBox" Content="Date Modified" Margin="190,50,0,0" VerticalAlignment="Top"/>
-        <ListView x:Name="ResultsListView" Margin="10,80,10,50">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}"/>
-                    <GridViewColumn Header="Path" DisplayMemberBinding="{Binding Path}"/>
-                    <GridViewColumn Header="Size" DisplayMemberBinding="{Binding Size}"/>
-                    <GridViewColumn Header="Date Modified" DisplayMemberBinding="{Binding DateModified}"/>
-                </GridView>
-            </ListView.View>
-        </ListView>
-        <Button x:Name="OpenButton" Content="Open" Width="100" Height="30" Margin="620,400,10,10" VerticalAlignment="Bottom" Click="OpenButton_Click"/>
-        <Button x:Name="DeleteButton" Content="Delete" Width="100" Height="30" Margin="730,400,10,10" VerticalAlignment="Bottom" Click="DeleteButton_Click"/>
-    </Grid>
-</Window>
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Windows;
+using System.Windows.Controls;
+
+namespace DuplicateFinder
+{
+    public partial class MainWindow : Window
+    {
+        public MainWindow()
+        {
+            InitializeComponent();
+        }
+
+        private void SearchButton_Click(object sender, RoutedEventArgs e)
+        {
+            string directoryPath = DirectoryPathTextBox.Text;
+            if (Directory.Exists(directoryPath))
+            {
+                var duplicates = FindDuplicates(directoryPath);
+                ResultsListView.ItemsSource = duplicates;
+            }
+            else
+            {
+                MessageBox.Show("Directory does not exist.");
+            }
+        }
+
+        private List<FileInfo> FindDuplicates(string directoryPath)
+        {
+            var files = Directory.GetFiles(directoryPath, "*.*", SearchOption.AllDirectories)
+                                 .Select(path => new FileInfo(path))
+                                 .ToList();
+
+            var duplicates = new List<FileInfo>();
+
+            if (NameCheckBox.IsChecked == true)
+            {
+                var nameGroups = files.GroupBy(f => f.Name);
+                duplicates.AddRange(nameGroups.Where(g => g.Count() > 1).SelectMany(g => g));
+            }
+
+            if (SizeCheckBox.IsChecked == true)
+            {
+                var sizeGroups = files.GroupBy(f => f.Length);
+                duplicates.AddRange(sizeGroups.Where(g => g.Count() > 1).SelectMany(g => g));
+            }
+
+            if (DateCheckBox.IsChecked == true)
+            {
+                var dateGroups = files.GroupBy(f => f.LastWriteTime);
+                duplicates.AddRange(dateGroups.Where(g => g.Count() > 1).SelectMany(g => g));
+            }
+
+            return duplicates.Distinct().ToList();
+        }
+
+        private void OpenButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (ResultsListView.SelectedItem is FileInfo file)
+            {
+                System.Diagnostics.Process.Start("explorer.exe", file.FullName);
+            }
+        }
+
+        private void DeleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (ResultsListView.SelectedItem is FileInfo file)
+            {
+                if (MessageBox.Show($"Are you sure you want to delete {file.Name}?", "Confirm Delete", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                {
+                    file.Delete();
+                    ResultsListView.ItemsSource = FindDuplicates(DirectoryPathTextBox.Text);
+                }
+            }
+        }
+    }
+}
