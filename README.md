@@ -1,30 +1,121 @@
-<Window x:Class="DuplicateFinder.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Duplicate Finder" Height="450" Width="800">
-    <Grid>
-        <StackPanel>
-            <Button Content="Выбрать каталог" Click="SelectDirectory_Click" Margin="10"/>
-            <CheckBox x:Name="NameCheckBox" Content="Имя" IsChecked="True" Margin="10"/>
-            <CheckBox x:Name="SizeCheckBox" Content="Размер" Margin="10"/>
-            <CheckBox x:Name="DateCheckBox" Content="Дата изменения" Margin="10"/>
-            <Button Content="Найти дубликаты" Click="FindDuplicates_Click" Margin="10"/>
-            <ListView x:Name="ResultsListView" Margin="10">
-                <ListView.ContextMenu>
-                    <ContextMenu>
-                        <MenuItem Header="Открыть" Click="OpenFile_Click"/>
-                        <MenuItem Header="Удалить" Click="DeleteFile_Click"/>
-                    </ContextMenu>
-                </ListView.ContextMenu>
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn Header="Имя" DisplayMemberBinding="{Binding Name}"/>
-                        <GridViewColumn Header="Путь" DisplayMemberBinding="{Binding Path}"/>
-                        <GridViewColumn Header="Размер" DisplayMemberBinding="{Binding Size}"/>
-                        <GridViewColumn Header="Дата изменения" DisplayMemberBinding="{Binding LastModified}"/>
-                    </GridView>
-                </ListView.View>
-            </ListView>
-        </StackPanel>
-    </Grid>
-</Window>
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Windows;
+using Microsoft.Win32;
+
+namespace DuplicateFinder
+{
+    public partial class MainWindow : Window
+    {
+        private string selectedDirectory;
+
+        public MainWindow()
+        {
+            InitializeComponent();
+        }
+
+        private void SelectDirectory_Click(object sender, RoutedEventArgs e)
+        {
+            var dialog = new OpenFileDialog
+            {
+                ValidateNames = false,
+                CheckFileExists = false,
+                CheckPathExists = true,
+                FileName = "Folder Selection."
+            };
+
+            if (dialog.ShowDialog() == true)
+            {
+                selectedDirectory = Path.GetDirectoryName(dialog.FileName);
+            }
+        }
+
+        private void FindDuplicates_Click(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(selectedDirectory))
+            {
+                MessageBox.Show("Выберите каталог.");
+                return;
+            }
+
+            bool byName = NameCheckBox.IsChecked ?? false;
+            bool bySize = SizeCheckBox.IsChecked ?? false;
+            bool byDate = DateCheckBox.IsChecked ?? false;
+
+            var duplicates = FindDuplicatesByCriteria(selectedDirectory, byName, bySize, byDate);
+            ResultsListView.ItemsSource = duplicates;
+        }
+
+        private List<FileInfo> FindDuplicatesByCriteria(string directory, bool byName, bool bySize, bool byDate)
+        {
+            var files = new DirectoryInfo(directory).GetFiles("*", SearchOption.AllDirectories);
+            var duplicates = new List<FileInfo>();
+
+            if (byName)
+            {
+                duplicates.AddRange(files
+                    .GroupBy(f => f.Name)
+                    .Where(g => g.Count() > 1)
+                    .SelectMany(g => g));
+            }
+
+            if (bySize)
+            {
+                duplicates.AddRange(files
+                    .GroupBy(f => f.Length)
+                    .Where(g => g.Count() > 1)
+                    .SelectMany(g => g));
+            }
+
+            if (byDate)
+            {
+                duplicates.AddRange(files
+                    .GroupBy(f => f.LastWriteTime)
+                    .Where(g => g.Count() > 1)
+                    .SelectMany(g => g));
+            }
+
+            return duplicates.Distinct().Select(f => new FileInfo
+            {
+                Name = f.Name,
+                Path = f.FullName,
+                Size = f.Length,
+                LastModified = f.LastWriteTime
+            }).ToList();
+        }
+
+        private void OpenFile_Click(object sender, RoutedEventArgs e)
+        {
+            if (ResultsListView.SelectedItem is FileInfo file)
+            {
+                System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
+                {
+                    FileName = file.Path,
+                    UseShellExecute = true
+                });
+            }
+        }
+
+        private void DeleteFile_Click(object sender, RoutedEventArgs e)
+        {
+            if (ResultsListView.SelectedItem is FileInfo file)
+            {
+                if (MessageBox.Show($"Вы уверены, что хотите удалить файл {file.Name}?", "Подтверждение", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                {
+                    File.Delete(file.Path);
+                    FindDuplicates_Click(null, null); // Обновить список
+                }
+            }
+        }
+    }
+
+    public class FileInfo
+    {
+        public string Name { get; set; }
+        public string Path { get; set; }
+        public long Size { get; set; }
+        public DateTime LastModified { get; set; }
+    }
+}
