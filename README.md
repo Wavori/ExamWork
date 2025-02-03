@@ -1,88 +1,46 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Windows;
+fun main() {
+    // Часть 1: Создание, заполнение и вывод списка с фруктами
+    val fruits = mutableListOf<String>()
+    fruits.add("Яблоко")
+    fruits.add("Банан")
+    fruits.add("Вишня")
 
-namespace DuplicateFinder
-{
-    public partial class MainWindow : Window
-    {
-        public MainWindow()
-        {
-            InitializeComponent();
-        }
-
-        private void SearchButton_Click(object sender, RoutedEventArgs e)
-        {
-            string directoryPath = DirectoryPath.Text;
-            if (Directory.Exists(directoryPath))
-            {
-                var duplicates = FindDuplicates(directoryPath);
-                ResultsListView.ItemsSource = duplicates;
-            }
-            else
-            {
-                MessageBox.Show("Directory does not exist.");
-            }
-        }
-
-        private List<FileInfo> FindDuplicates(string directoryPath)
-        {
-            var files = Directory.GetFiles(directoryPath, "*", SearchOption.AllDirectories)
-                                 .Select(file => new FileInfo(file))
-                                 .ToList();
-
-            if (SearchByName.IsChecked == true)
-            {
-                files = files.GroupBy(file => file.Name)
-                             .Where(group => group.Count() > 1)
-                             .SelectMany(group => group)
-                             .ToList();
-            }
-
-            if (SearchBySize.IsChecked == true)
-            {
-                files = files.GroupBy(file => file.Length)
-                             .Where(group => group.Count() > 1)
-                             .SelectMany(group => group)
-                             .ToList();
-            }
-
-            if (SearchByDate.IsChecked == true)
-            {
-                files = files.GroupBy(file => file.LastWriteTime)
-                             .Where(group => group.Count() > 1)
-                             .SelectMany(group => group)
-                             .ToList();
-            }
-
-            return files;
-        }
-
-        private void OpenButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (ResultsListView.SelectedItem is FileInfo file)
-            {
-                System.Diagnostics.Process.Start("explorer.exe", file.FullName);
-            }
-        }
-
-        private void DeleteButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (ResultsListView.SelectedItem is FileInfo file)
-            {
-                try
-                {
-                    file.Delete();
-                    MessageBox.Show("File deleted successfully.");
-                    SearchButton_Click(null, null); // Refresh the list
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"Error deleting file: {ex.Message}");
-                }
-            }
-        }
+    println("Введите количество фруктов для добавления: ")
+    val n = readLine()?.toIntOrNull() ?: 0
+    for (i in 1..n) {
+        println("Введите название фрукта $i: ")
+        val fruit = readLine() ?: ""
+        fruits.add(fruit)
     }
+
+    println("Список фруктов:")
+    for ((index, fruit) in fruits.withIndex()) {
+        println("${index + 1} - $fruit")
+    }
+    println("Количество элементов в списке: ${fruits.size}")
+
+    // Часть 2: Обработка списков
+    val numbers = mutableListOf<Int>()
+    println("Введите количество элементов для добавления: ")
+    val m = readLine()?.toIntOrNull() ?: 0
+    for (i in 1..m) {
+        println("Введите число $i: ")
+        val number = readLine()?.toIntOrNull() ?: 0
+        numbers.add(number)
+    }
+
+    val index100 = numbers.indexOf(100)
+    println("Индекс элемента со значением 100: ${if (index100 == -1) "Не найдено" else index100}")
+
+    val sumNumbers = numbers.sum()
+    println("Сумма элементов коллекции: $sumNumbers")
+
+    val averageNumbers = if (numbers.isNotEmpty()) sumNumbers.toDouble() / numbers.size else 0.0
+    println("Среднее значение элементов коллекции: $averageNumbers")
+
+    val allPositive = numbers.all { it > 0 }
+    println("Все числа больше нуля: $allPositive")
+
+    val oddNumbers = numbers.filter { it % 2 != 0 }
+    println("Нечетные значения элементов: $oddNumbers")
 }
