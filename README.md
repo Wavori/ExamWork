@@ -1,80 +1,43 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Windows;
-using System.Windows.Controls;
+<Window x:Class="FileDuplicateFinder.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="File Duplicate Finder" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
 
-namespace DuplicateFinder
-{
-    public partial class MainWindow : Window
-    {
-        public MainWindow()
-        {
-            InitializeComponent();
-        }
+        <StackPanel Orientation="Horizontal" Grid.Row="0" Margin="10">
+            <Button Content="Select Directory" Click="SelectDirectory_Click" Margin="5"/>
+            <TextBox Name="DirectoryPath" Width="500" Margin="5"/>
+            <Button Content="Search" Click="Search_Click" Margin="5"/>
+        </StackPanel>
 
-        private void SearchButton_Click(object sender, RoutedEventArgs e)
-        {
-            string directoryPath = DirectoryPathTextBox.Text;
-            if (Directory.Exists(directoryPath))
-            {
-                var duplicates = FindDuplicates(directoryPath);
-                ResultsListView.ItemsSource = duplicates;
-            }
-            else
-            {
-                MessageBox.Show("Directory does not exist.");
-            }
-        }
+        <DataGrid Name="DuplicatesDataGrid" Grid.Row="1" Margin="10" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
+                <DataGridTextColumn Header="Path" Binding="{Binding Path}"/>
+                <DataGridTextColumn Header="Size" Binding="{Binding Size}"/>
+                <DataGridTextColumn Header="Last Modified" Binding="{Binding LastModified}"/>
+                <DataGridTemplateColumn Header="Actions">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Button Content="Open" Click="OpenFile_Click" Tag="{Binding Path}"/>
+                                <Button Content="Delete" Click="DeleteFile_Click" Tag="{Binding Path}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
 
-        private List<System.IO.FileInfo> FindDuplicates(string directoryPath)
-        {
-            var files = Directory.GetFiles(directoryPath, "*.*", SearchOption.AllDirectories)
-                                 .Select(path => new System.IO.FileInfo(path))
-                                 .ToList();
-
-            var duplicates = new List<System.IO.FileInfo>();
-
-            if (NameCheckBox.IsChecked == true)
-            {
-                var nameGroups = files.GroupBy(f => f.Name);
-                duplicates.AddRange(nameGroups.Where(g => g.Count() > 1).SelectMany(g => g));
-            }
-
-            if (SizeCheckBox.IsChecked == true)
-            {
-                var sizeGroups = files.GroupBy(f => f.Length);
-                duplicates.AddRange(sizeGroups.Where(g => g.Count() > 1).SelectMany(g => g));
-            }
-
-            if (DateCheckBox.IsChecked == true)
-            {
-                var dateGroups = files.GroupBy(f => f.LastWriteTime);
-                duplicates.AddRange(dateGroups.Where(g => g.Count() > 1).SelectMany(g => g));
-            }
-
-            return duplicates.Distinct().ToList();
-        }
-
-        private void OpenButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (ResultsListView.SelectedItem is System.IO.FileInfo file)
-            {
-                System.Diagnostics.Process.Start("explorer.exe", file.FullName);
-            }
-        }
-
-        private void DeleteButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (ResultsListView.SelectedItem is System.IO.FileInfo file)
-            {
-                if (MessageBox.Show($"Are you sure you want to delete {file.Name}?", "Confirm Delete", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
-                {
-                    file.Delete();
-                    ResultsListView.ItemsSource = FindDuplicates(DirectoryPathTextBox.Text);
-                }
-            }
-        }
-    }
-}
+        <StackPanel Orientation="Horizontal" Grid.Row="2" Margin="10">
+            <CheckBox Name="SearchByName" Content="Search by Name" IsChecked="True" Margin="5"/>
+            <CheckBox Name="SearchBySize" Content="Search by Size" Margin="5"/>
+            <CheckBox Name="SearchByDate" Content="Search by Date" Margin="5"/>
+        </StackPanel>
+    </Grid>
+</Window>
