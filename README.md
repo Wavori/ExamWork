@@ -1,26 +1,88 @@
-<Window x:Class="DuplicateFinder.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Duplicate Finder" Height="450" Width="800">
-    <Grid>
-        <StackPanel Margin="10">
-            <TextBox x:Name="DirectoryPath" Width="600" Margin="0,0,0,10" PlaceholderText="Enter directory path"/>
-            <CheckBox x:Name="SearchByName" Content="Search by Name" IsChecked="True" Margin="0,0,0,10"/>
-            <CheckBox x:Name="SearchBySize" Content="Search by Size" Margin="0,0,0,10"/>
-            <CheckBox x:Name="SearchByDate" Content="Search by Date" Margin="0,0,0,10"/>
-            <Button Content="Search" Click="SearchButton_Click" Margin="0,0,0,10"/>
-            <ListView x:Name="ResultsListView" Margin="0,0,0,10">
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}"/>
-                        <GridViewColumn Header="Path" DisplayMemberBinding="{Binding FullName}"/>
-                        <GridViewColumn Header="Size" DisplayMemberBinding="{Binding Length}"/>
-                        <GridViewColumn Header="Last Modified" DisplayMemberBinding="{Binding LastWriteTime}"/>
-                    </GridView>
-                </ListView.View>
-            </ListView>
-            <Button Content="Open Selected" Click="OpenButton_Click" Margin="0,0,0,10"/>
-            <Button Content="Delete Selected" Click="DeleteButton_Click" Margin="0,0,0,10"/>
-        </StackPanel>
-    </Grid>
-</Window>
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Windows;
+
+namespace DuplicateFinder
+{
+    public partial class MainWindow : Window
+    {
+        public MainWindow()
+        {
+            InitializeComponent();
+        }
+
+        private void SearchButton_Click(object sender, RoutedEventArgs e)
+        {
+            string directoryPath = DirectoryPath.Text;
+            if (Directory.Exists(directoryPath))
+            {
+                var duplicates = FindDuplicates(directoryPath);
+                ResultsListView.ItemsSource = duplicates;
+            }
+            else
+            {
+                MessageBox.Show("Directory does not exist.");
+            }
+        }
+
+        private List<FileInfo> FindDuplicates(string directoryPath)
+        {
+            var files = Directory.GetFiles(directoryPath, "*", SearchOption.AllDirectories)
+                                 .Select(file => new FileInfo(file))
+                                 .ToList();
+
+            if (SearchByName.IsChecked == true)
+            {
+                files = files.GroupBy(file => file.Name)
+                             .Where(group => group.Count() > 1)
+                             .SelectMany(group => group)
+                             .ToList();
+            }
+
+            if (SearchBySize.IsChecked == true)
+            {
+                files = files.GroupBy(file => file.Length)
+                             .Where(group => group.Count() > 1)
+                             .SelectMany(group => group)
+                             .ToList();
+            }
+
+            if (SearchByDate.IsChecked == true)
+            {
+                files = files.GroupBy(file => file.LastWriteTime)
+                             .Where(group => group.Count() > 1)
+                             .SelectMany(group => group)
+                             .ToList();
+            }
+
+            return files;
+        }
+
+        private void OpenButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (ResultsListView.SelectedItem is FileInfo file)
+            {
+                System.Diagnostics.Process.Start("explorer.exe", file.FullName);
+            }
+        }
+
+        private void DeleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (ResultsListView.SelectedItem is FileInfo file)
+            {
+                try
+                {
+                    file.Delete();
+                    MessageBox.Show("File deleted successfully.");
+                    SearchButton_Click(null, null); // Refresh the list
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error deleting file: {ex.Message}");
+                }
+            }
+        }
+    }
+}
