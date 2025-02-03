@@ -3,14 +3,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Windows;
-using Microsoft.Win32;
+using System.Windows.Controls;
 
-namespace DuplicateFinder
+namespace FileDuplicateFinder
 {
     public partial class MainWindow : Window
     {
-        private string selectedDirectory;
-
         public MainWindow()
         {
             InitializeComponent();
@@ -18,94 +16,86 @@ namespace DuplicateFinder
 
         private void SelectDirectory_Click(object sender, RoutedEventArgs e)
         {
-            var dialog = new OpenFileDialog
+            using (var dialog = new System.Windows.Forms.FolderBrowserDialog())
             {
-                ValidateNames = false,
-                CheckFileExists = false,
-                CheckPathExists = true,
-                FileName = "Folder Selection."
-            };
-
-            if (dialog.ShowDialog() == true)
-            {
-                selectedDirectory = Path.GetDirectoryName(dialog.FileName);
+                if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    DirectoryPathTextBox.Text = dialog.SelectedPath;
+                }
             }
         }
 
-        private void FindDuplicates_Click(object sender, RoutedEventArgs e)
+        private void Search_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrEmpty(selectedDirectory))
+            var directoryPath = DirectoryPathTextBox.Text;
+            if (string.IsNullOrEmpty(directoryPath) || !Directory.Exists(directoryPath))
             {
-                MessageBox.Show("Выберите каталог.");
+                MessageBox.Show("Please select a valid directory.");
                 return;
             }
 
-            bool byName = NameCheckBox.IsChecked ?? false;
-            bool bySize = SizeCheckBox.IsChecked ?? false;
-            bool byDate = DateCheckBox.IsChecked ?? false;
+            var files = Directory.GetFiles(directoryPath, "*.*", SearchOption.AllDirectories)
+                .Select(file => new FileInfo(file))
+                .ToList();
 
-            var duplicates = FindDuplicatesByCriteria(selectedDirectory, byName, bySize, byDate);
-            ResultsListView.ItemsSource = duplicates;
+            var duplicates = FindDuplicates(files);
+            ResultsDataGrid.ItemsSource = duplicates;
         }
 
-        private List<FileInfo> FindDuplicatesByCriteria(string directory, bool byName, bool bySize, bool byDate)
+        private List<FileInfo> FindDuplicates(List<FileInfo> files)
         {
-            var files = new DirectoryInfo(directory).GetFiles("*", SearchOption.AllDirectories);
             var duplicates = new List<FileInfo>();
+            var criteria = new List<Func<FileInfo, object>>();
 
-            if (byName)
+            if (NameCheckBox.IsChecked == true)
             {
-                duplicates.AddRange(files
-                    .GroupBy(f => f.Name)
-                    .Where(g => g.Count() > 1)
-                    .SelectMany(g => g));
+                criteria.Add(f => f.Name);
+            }
+            if (SizeCheckBox.IsChecked == true)
+            {
+                criteria.Add(f => f.Size);
+            }
+            if (LastModifiedCheckBox.IsChecked == true)
+            {
+                criteria.Add(f => f.LastModified);
             }
 
-            if (bySize)
+            var groups = files.GroupBy(f => criteria.Select(c => c(f)).ToArray());
+
+            foreach (var group in groups)
             {
-                duplicates.AddRange(files
-                    .GroupBy(f => f.Length)
-                    .Where(g => g.Count() > 1)
-                    .SelectMany(g => g));
+                if (group.Count() > 1)
+                {
+                    duplicates.AddRange(group);
+                }
             }
 
-            if (byDate)
-            {
-                duplicates.AddRange(files
-                    .GroupBy(f => f.LastWriteTime)
-                    .Where(g => g.Count() > 1)
-                    .SelectMany(g => g));
-            }
-
-            return duplicates.Distinct().Select(f => new FileInfo
-            {
-                Name = f.Name,
-                Path = f.FullName,
-                Size = f.Length,
-                LastModified = f.LastWriteTime
-            }).ToList();
+            return duplicates;
         }
 
         private void OpenFile_Click(object sender, RoutedEventArgs e)
         {
-            if (ResultsListView.SelectedItem is FileInfo file)
+            if (sender is Button button && button.Tag is string filePath)
             {
-                System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
-                {
-                    FileName = file.Path,
-                    UseShellExecute = true
-                });
+                System.Diagnostics.Process.Start("explorer.exe", $"/select,\"{filePath}\"");
             }
         }
 
         private void DeleteFile_Click(object sender, RoutedEventArgs e)
         {
-            if (ResultsListView.SelectedItem is FileInfo file)
+            if (sender is Button button && button.Tag is string filePath)
             {
-                if (MessageBox.Show($"Вы уверены, что хотите удалить файл {file.Name}?", "Подтверждение", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                if (MessageBox.Show($"Are you sure you want to delete {filePath}?", "Confirm Delete", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
                 {
-                    File.Delete(file.Path);
-                    FindDuplicates_Click(null, null); // Обновить список
+                    try
+                    {
+                        File.Delete(filePath);
+                        Search_Click(null, null); // Refresh the results
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Error deleting file: {ex.Message}");
+                    }
                 }
             }
         }
@@ -117,5 +107,14 @@ namespace DuplicateFinder
         public string Path { get; set; }
         public long Size { get; set; }
         public DateTime LastModified { get; set; }
+
+        public FileInfo(string path)
+        {
+            var info = new System.IO.FileInfo(path);
+            Name = info.Name;
+            Path = info.FullName;
+            Size = info.Length;
+            LastModified = info.LastWriteTime;
+        }
     }
 }
