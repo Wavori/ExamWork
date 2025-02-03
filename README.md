@@ -1,46 +1,27 @@
 fun main() {
-    // Часть 1: Создание, заполнение и вывод списка с фруктами
-    val fruits = mutableListOf<String>()
-    fruits.add("Яблоко")
-    fruits.add("Банан")
-    fruits.add("Вишня")
+    // Создание словаря
+    val countryCodes = mutableMapOf<String, String>()
 
-    println("Введите количество фруктов для добавления: ")
+    // Заполнение словаря программно
+    countryCodes["RU"] = "Россия"
+    countryCodes["US"] = "США"
+    countryCodes["FR"] = "Франция"
+
+    // Заполнение словаря с клавиатуры
+    println("Введите количество стран для добавления: ")
     val n = readLine()?.toIntOrNull() ?: 0
     for (i in 1..n) {
-        println("Введите название фрукта $i: ")
-        val fruit = readLine() ?: ""
-        fruits.add(fruit)
+        println("Введите двухбуквенный код страны $i: ")
+        val code = readLine() ?: ""
+        println("Введите название страны $i: ")
+        val country = readLine() ?: ""
+        countryCodes[code] = country
     }
 
-    println("Список фруктов:")
-    for ((index, fruit) in fruits.withIndex()) {
-        println("${index + 1} - $fruit")
+    // Вывод содержимого словаря на экран
+    println("Содержимое словаря:")
+    for ((code, country) in countryCodes) {
+        println("$code - $country")
     }
-    println("Количество элементов в списке: ${fruits.size}")
-
-    // Часть 2: Обработка списков
-    val numbers = mutableListOf<Int>()
-    println("Введите количество элементов для добавления: ")
-    val m = readLine()?.toIntOrNull() ?: 0
-    for (i in 1..m) {
-        println("Введите число $i: ")
-        val number = readLine()?.toIntOrNull() ?: 0
-        numbers.add(number)
-    }
-
-    val index100 = numbers.indexOf(100)
-    println("Индекс элемента со значением 100: ${if (index100 == -1) "Не найдено" else index100}")
-
-    val sumNumbers = numbers.sum()
-    println("Сумма элементов коллекции: $sumNumbers")
-
-    val averageNumbers = if (numbers.isNotEmpty()) sumNumbers.toDouble() / numbers.size else 0.0
-    println("Среднее значение элементов коллекции: $averageNumbers")
-
-    val allPositive = numbers.all { it > 0 }
-    println("Все числа больше нуля: $allPositive")
-
-    val oddNumbers = numbers.filter { it % 2 != 0 }
-    println("Нечетные значения элементов: $oddNumbers")
+    println("Количество элементов в словаре: ${countryCodes.size}")
 }
