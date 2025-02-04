@@ -1,34 +1,30 @@
 import kotlinx.coroutines.*
 
-fun main() = runBlocking {
+fun main() = runBlocking(Dispatchers.IO) {
     println("Основной поток: ${Thread.currentThread().name}")
 
-    val job1 = launch { printSheep() }
-    val job2 = launch { printCats() }
-
-    job1.join()
-    job2.join()
-}
-
-suspend fun printSheep() {
-    withContext(Dispatchers.IO) {
-        println("Поток овечек: ${Thread.currentThread().name}")
-        for (i in 1..500) {
-            println("$i овечка")
-        }
-        delay(1000)
-        for (i in 501..1000) {
-            println("$i овечка")
+    val job = launch {
+        try {
+            loadFiles()
+        } catch (e: CancellationException) {
+            println("Загрузка отменена")
         }
     }
+
+    // Симуляция ввода пользователя для отмены загрузки
+    println("Введите 'cancel' для отмены загрузки:")
+    val input = readLine()
+    if (input == "cancel") {
+        job.cancel()
+    }
+
+    job.join()
 }
 
-suspend fun printCats() {
-    withContext(Dispatchers.IO) {
-        println("Поток котиков: ${Thread.currentThread().name}")
-        for (i in 1..500) {
-            println("$i котик")
-            delay(10)
-        }
+suspend fun loadFiles() {
+    for (i in 1..30) {
+        println("Загрузка файла $i (Поток: ${Thread.currentThread().name})")
+        delay(3000)
     }
+    println("Все файлы загружены")
 }
