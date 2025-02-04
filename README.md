@@ -1,30 +1,19 @@
 import kotlinx.coroutines.*
+import kotlin.random.Random
 
-fun main() = runBlocking(Dispatchers.IO) {
+fun main() = runBlocking {
     println("Основной поток: ${Thread.currentThread().name}")
 
-    val job = launch {
-        try {
-            loadFiles()
-        } catch (e: CancellationException) {
-            println("Загрузка отменена")
-        }
-    }
+    val deferred: Deferred<Int> = async { connectToWebServer() }
+    val result = deferred.await()
 
-    // Симуляция ввода пользователя для отмены загрузки
-    println("Введите 'cancel' для отмены загрузки:")
-    val input = readLine()
-    if (input == "cancel") {
-        job.cancel()
-    }
-
-    job.join()
+    println("Полученный код состояния HTTP: $result")
 }
 
-suspend fun loadFiles() {
-    for (i in 1..30) {
-        println("Загрузка файла $i (Поток: ${Thread.currentThread().name})")
-        delay(3000)
-    }
-    println("Все файлы загружены")
+suspend fun connectToWebServer(): Int {
+    println("Подключение к веб-серверу (Поток: ${Thread.currentThread().name})")
+    delay(1000)
+    val statusCodes = listOf(200, 400, 401, 403, 404, 410, 500)
+    val randomStatusCode = statusCodes.random()
+    return randomStatusCode
 }
