@@ -1,21 +1,29 @@
 import kotlinx.coroutines.*
-import kotlin.random.Random
 
-// Suspend-функция, эмулирующая подключение к веб-серверу
-suspend fun connectToWebServer(): Int {
-    println("Подключение к веб-серверу")
-    delay(1000) // Ожидание 1 секунду
-    val httpStatusCodes = listOf(200, 400, 401, 403, 404, 410, 500)
-    return httpStatusCodes.random() // Возвращаем случайный код состояния HTTP
+// Suspend-функция, эмулирующая загрузку файлов
+suspend fun downloadFiles() {
+    try {
+        for (i in 1..30) {
+            println("Загрузка файла $i")
+            delay(3000) // Задержка на 3 секунды для каждого файла
+        }
+        println("Все файлы загружены")
+    } catch (e: CancellationException) {
+        println("Загрузка отменена")
+    }
 }
 
 fun main() = runBlocking {
-    // Запускаем корутину и получаем объект Deferred
-    val deferred: Deferred<Int> = async {
-        connectToWebServer()
+    val job = launch(Dispatchers.IO) {
+        downloadFiles()
     }
 
-    // Ожидаем завершения выполнения и выводим результат
-    val result = deferred.await()
-    println("Полученный код состояния HTTP: $result")
+    // Ожидание ввода пользователя для отмены загрузки
+    println("Введите 'cancel' для отмены загрузки:")
+    val input = readLine()
+    if (input == "cancel") {
+        job.cancel()
+    }
+
+    job.join() // Ожидание завершения корутины
 }
