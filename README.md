@@ -1,35 +1,49 @@
-<Window x:Class="ImageViewer.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Image Viewer" Height="450" Width="800" WindowState="Maximized">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
+using Microsoft.Win32;
+using System;
+using System.IO;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media.Imaging;
 
-        <Menu Grid.Row="0">
-            <MenuItem Header="Файл">
-                <MenuItem Header="Открыть" Click="OpenMenuItem_Click"/>
-                <MenuItem Header="Выход" Click="ExitMenuItem_Click"/>
-            </MenuItem>
-        </Menu>
+namespace ImageViewer
+{
+    public partial class MainWindow : Window
+    {
+        public MainWindow()
+        {
+            InitializeComponent();
+        }
 
-        <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-            <Grid>
-                <Image x:Name="ImageDisplay" Stretch="Uniform" RenderTransformOrigin="0.5,0.5">
-                    <Image.RenderTransform>
-                        <ScaleTransform x:Name="ImageScaleTransform" ScaleX="1" ScaleY="1"/>
-                    </Image.RenderTransform>
-                </Image>
-            </Grid>
-        </ScrollViewer>
+        private void OpenMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                Filter = "Image Files|*.bmp;*.jpg;*.jpeg;*.png"
+            };
 
-        <StatusBar Grid.Row="2">
-            <TextBlock x:Name="StatusTextBlock"/>
-        </StatusBar>
+            if (openFileDialog.ShowDialog() == true)
+            {
+                string filePath = openFileDialog.FileName;
+                BitmapImage bitmap = new BitmapImage(new Uri(filePath));
+                ImageDisplay.Source = bitmap;
 
-        <Slider x:Name="ZoomSlider" Grid.Row="2" Minimum="0" Maximum="200" Value="100" Width="200" ValueChanged="ZoomSlider_ValueChanged" VerticalAlignment="Center" HorizontalAlignment="Right"/>
-    </Grid>
-</Window>
+                FileInfo fileInfo = new FileInfo(filePath);
+                StatusTextBlock.Text = $"Размер файла: {fileInfo.Length} байт, Размер изображения: {bitmap.PixelWidth}x{bitmap.PixelHeight} пикселей";
+
+                Title = Path.GetFileName(filePath);
+            }
+        }
+
+        private void ExitMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+
+        private void ZoomSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            double scale = ZoomSlider.Value / 100;
+            ImageScaleTransform.ScaleX = scale;
+            ImageScaleTransform.ScaleY = scale;
+        }
+    }
+}
