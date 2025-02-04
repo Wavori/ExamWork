@@ -1,24 +1,28 @@
 import kotlinx.coroutines.*
 
-suspend fun connectToDatabase() {
-    withTimeout(10000) { // Устанавливаем таймаут на 10 секунд
-        for (i in 1..5) {
-            println("Попытка подключения к БД $i в потоке ${Thread.currentThread().name}")
-            delay(3000) // Задержка на 3 секунды
+fun main() = runBlocking {
+    val job = launch {
+        try {
+            loadFiles()
+        } catch (e: CancellationException) {
+            println("Загрузка отменена")
         }
-        println("Подключение к БД успешно в потоке ${Thread.currentThread().name}")
     }
+
+    // Симуляция ввода пользователя для отмены загрузки
+    println("Введите 'cancel' для отмены загрузки:")
+    val input = readLine()
+    if (input == "cancel") {
+        job.cancel()
+    }
+
+    job.join()
 }
 
-fun main() = runBlocking {
-    println("Основной поток: ${Thread.currentThread().name}")
-
-    try {
-        // Используем Dispatchers.IO для запуска корутины
-        withContext(Dispatchers.IO) {
-            connectToDatabase()
-        }
-    } catch (e: TimeoutCancellationException) {
-        println("Превышено время ожидания в потоке ${Thread.currentThread().name}")
+suspend fun loadFiles() {
+    for (i in 1..30) {
+        println("Загрузка файла $i")
+        delay(3000)
     }
+    println("Все файлы загружены")
 }
