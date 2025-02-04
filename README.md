@@ -1,31 +1,19 @@
 import kotlinx.coroutines.*
 
-suspend fun loadFiles() {
-    try {
-        for (i in 1..30) {
-            println("Загрузка файла $i")
+suspend fun connectToDatabase() {
+    withTimeout(10000) { // Устанавливаем таймаут на 10 секунд
+        for (i in 1..5) {
+            println("Попытка подключения к БД $i")
             delay(3000) // Задержка на 3 секунды
         }
-        println("Все файлы загружены")
-    } catch (e: CancellationException) {
-        println("Загрузка отменена")
+        println("Подключение к БД успешно")
     }
 }
 
 fun main() = runBlocking {
-    val job = launch {
-        loadFiles()
+    try {
+        connectToDatabase()
+    } catch (e: TimeoutCancellationException) {
+        println("Превышено время ожидания")
     }
-
-    // Запускаем отдельную корутину для чтения ввода пользователя
-    launch {
-        while (isActive) {
-            val input = readLine()
-            if (input == "cancel") {
-                job.cancel()
-            }
-        }
-    }
-
-    job.join()
 }
