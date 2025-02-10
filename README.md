@@ -1,26 +1,23 @@
 #include <iostream>
 
-void calculate_division(int dividend, int divisor, int &quotient, int &remainder) {
+void divide(int dividend, int divisor, int &quotient, int &remainder) {
     __asm {
-        mov eax, dividend   // Загружаем делимое в регистр EAX
-        xor edx, edx       // Обнуляем EDX перед делением (это будет остаток)
-        mov ebx, divisor    // Загружаем делитель в регистр EBX
-        div ebx             // Делим EAX на EBX (частное в EAX, остаток в EDX)
-        
-        mov quotient, eax   // Сохраняем частное
-        mov remainder, edx  // Сохраняем остаток
+        mov eax, dividend   ; Загружаем делимое в EAX
+        cdq                 ; Расширяем знак EAX в EDX (если делимое отрицательное)
+        idiv divisor        ; Выполняем деление: EAX = quotient, EDX = remainder
+        mov quotient, eax   ; Сохраняем частное
+        mov remainder, edx  ; Сохраняем остаток
     }
 }
 
 int main() {
-    int dividend = 10;
-    int divisor = 3;
-    int quotient = 0;
-    int remainder = 0;
+    int dividend = 17, divisor = 5;
+    int quotient, remainder;
 
-    calculate_division(dividend, divisor, quotient, remainder);
+    divide(dividend, divisor, quotient, remainder);
 
-    std::cout << "Частное: " << quotient << ", Остаток: " << remainder << std::endl;
+    std::cout << "Частное: " << quotient << std::endl;
+    std::cout << "Остаток: " << remainder << std::endl;
 
     return 0;
 }
