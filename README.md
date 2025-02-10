@@ -1,18 +1,22 @@
 #include <iostream>
 
-int calculate_y(int a, int x, int b) {
+int calculate_y(int a, int x, int b, int c) {
     int y;
     __asm {
-        mov eax, a    ; eax = a
-        imul eax, x   ; eax = ax
-        add eax, b    ; eax = ax + b
-        mov y, eax    ; y = eax
+        mov eax, x       ; eax = x
+        imul eax, eax    ; eax = x^2
+        imul eax, a      ; eax = ax^2
+        mov ebx, x       ; ebx = x
+        imul ebx, b      ; ebx = bx
+        add eax, ebx     ; eax = ax^2 + bx
+        add eax, c       ; eax = ax^2 + bx + c
+        mov y, eax       ; y = eax
     }
     return y;
 }
 
 int main() {
-    int a = 3, x = 4, b = 5;
-    std::cout << "y = " << calculate_y(a, x, b) << std::endl;
+    int a = 2, x = 3, b = 4, c = 5;
+    std::cout << "y = " << calculate_y(a, x, b, c) << std::endl;
     return 0;
 }
