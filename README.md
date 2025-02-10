@@ -1,49 +1,29 @@
-using Microsoft.Win32;
-using System;
-using System.IO;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Media.Imaging;
+#include <iostream>
 
-namespace ImageViewer
-{
-    public partial class MainWindow : Window
-    {
-        public MainWindow()
-        {
-            InitializeComponent();
-        }
+// Функция для вычисления y(x) = ax + b с использованием ассемблерной вставки
+int compute_y(int a, int x, int b) {
+    int y;
+    // Ассемблерная вставка для вычисления y = ax + b
+    __asm__(
+        "movl %1, %%eax;\n\t"  // Перемещаем значение a в регистр eax
+        "movl %2, %%ebx;\n\t"  // Перемещаем значение x в регистр ebx
+        "imull %%ebx, %%eax;\n\t"  // Умножаем eax (a) на ebx (x), результат в eax
+        "addl %3, %%eax;\n\t"    // Добавляем b к результату в eax
+        "movl %%eax, %0;\n\t"    // Перемещаем результат из eax в y
+        : "=r" (y)               // Выходной операнд
+        : "r" (a), "r" (x), "r" (b) // Входные операнды
+        : "%eax", "%ebx"         // Используемые регистры
+    );
+    return y;
+}
 
-        private void OpenMenuItem_Click(object sender, RoutedEventArgs e)
-        {
-            OpenFileDialog openFileDialog = new OpenFileDialog
-            {
-                Filter = "Image Files|*.bmp;*.jpg;*.jpeg;*.png"
-            };
+int main() {
+    int a = 3;
+    int x = 4;
+    int b = 2;
 
-            if (openFileDialog.ShowDialog() == true)
-            {
-                string filePath = openFileDialog.FileName;
-                BitmapImage bitmap = new BitmapImage(new Uri(filePath));
-                ImageDisplay.Source = bitmap;
+    int result = compute_y(a, x, b);
+    std::cout << "y(" << x << ") = " << result << std::endl;
 
-                FileInfo fileInfo = new FileInfo(filePath);
-                StatusTextBlock.Text = $"Размер файла: {fileInfo.Length} байт, Размер изображения: {bitmap.PixelWidth}x{bitmap.PixelHeight} пикселей";
-
-                Title = Path.GetFileName(filePath);
-            }
-        }
-
-        private void ExitMenuItem_Click(object sender, RoutedEventArgs e)
-        {
-            Application.Current.Shutdown();
-        }
-
-        private void ZoomSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
-        {
-            double scale = ZoomSlider.Value / 100;
-            ImageScaleTransform.ScaleX = scale;
-            ImageScaleTransform.ScaleY = scale;
-        }
-    }
+    return 0;
 }
