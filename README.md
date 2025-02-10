@@ -1,22 +1,24 @@
 #include <iostream>
 
-int calculate_y(int a, int x, int b, int c) {
-    int y;
+void divide(int dividend, int divisor, int& quotient, int& remainder) {
     __asm {
-        mov eax, x       ; eax = x
-        imul eax, eax    ; eax = x^2
-        imul eax, a      ; eax = ax^2
-        mov ebx, x       ; ebx = x
-        imul ebx, b      ; ebx = bx
-        add eax, ebx     ; eax = ax^2 + bx
-        add eax, c       ; eax = ax^2 + bx + c
-        mov y, eax       ; y = eax
+        mov eax, dividend   ; eax = dividend
+        cdq                 ; Sign-extend eax into edx:eax (edx contains the sign extension)
+        mov ebx, divisor    ; ebx = divisor
+        idiv ebx            ; Divide edx:eax by ebx. Quotient goes into eax, remainder into edx.
+        mov quotient, eax   ; quotient = eax
+        mov remainder, edx   ; remainder = edx
     }
-    return y;
 }
 
 int main() {
-    int a = 2, x = 3, b = 4, c = 5;
-    std::cout << "y = " << calculate_y(a, x, b, c) << std::endl;
+    int dividend = 10, divisor = 3;
+    int quotient, remainder;
+
+    divide(dividend, divisor, quotient, remainder);
+
+    std::cout << "Quotient: " << quotient << std::endl;
+    std::cout << "Remainder: " << remainder << std::endl;
+
     return 0;
 }
