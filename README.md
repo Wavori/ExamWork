@@ -1,20 +1,23 @@
 #include <iostream>
 
-void swap(int &a, int &b) {
+void fillRegister(uint8_t value, uint32_t &result) {
     __asm {
-        mov eax, a   ; Загружаем a в EAX
-        mov ebx, b   ; Загружаем b в EBX
-        mov a, ebx   ; Записываем значение b в a
-        mov b, eax   ; Записываем значение a в b
+        mov al, value   ; Загружаем значение в AL
+        mov ah, al      ; Копируем AL в AH
+        shl eax, 16     ; Сдвигаем AL и AH в старшие 16 бит
+        mov ah, al      ; Копируем AL в AH (уже в старшем слове)
+        mov al, value   ; Восстанавливаем AL
+        mov result, eax ; Сохраняем результат
     }
 }
 
 int main() {
-    int a = 5, b = 10;
+    uint8_t value = 0xAB; // Заполняем значением 0xAB
+    uint32_t result;
 
-    std::cout << "До обмена: a = " << a << ", b = " << b << std::endl;
-    swap(a, b);
-    std::cout << "После обмена: a = " << a << ", b = " << b << std::endl;
+    fillRegister(value, result);
+
+    std::cout << "Результат: 0x" << std::hex << result << std::endl;
 
     return 0;
 }
