@@ -1,21 +1,18 @@
 #include <iostream>
 
+int calculate_y(int a, int x, int b) {
+    int y;
+    __asm {
+        mov eax, a    ; eax = a
+        imul eax, x   ; eax = ax
+        add eax, b    ; eax = ax + b
+        mov y, eax    ; y = eax
+    }
+    return y;
+}
+
 int main() {
-    double a = 2.0; // коэффициент a
-    double b = 3.0; // коэффициент b
-    double x = 5.0; // значение x
-    double y;       // результат
-
-    // Используем ассемблерную вставку для вычисления y = ax + b
-    asm (
-        fldl a      // Загружаем a в вершину стека FPU
-        fmul x      // Умножаем a на x
-        fadd b      // Добавляем b
-        fstpl y     // Сохраняем результат в y
-        : "=m" (y)  // Выходные операнды
-        : "m" (a), "m" (x), "m" (b) // Входные операнды
-    );
-
-    std::cout << "y = " << y << std::endl;
+    int a = 3, x = 4, b = 5;
+    std::cout << "y = " << calculate_y(a, x, b) << std::endl;
     return 0;
 }
