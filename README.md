@@ -1,23 +1,30 @@
-#include <iostream>
+section .data
+    num1 dd 5
+    num2 dd 10
+    min_msg db "Minimum is: %d", 10, 0
 
-void fillRegister(uint8_t value, uint32_t &result) {
-    __asm {
-        mov al, value   ; Загружаем значение в AL
-        mov ah, al      ; Копируем AL в AH
-        shl eax, 16     ; Сдвигаем AL и AH в старшие 16 бит
-        mov ah, al      ; Копируем AL в AH (уже в старшем слове)
-        mov al, value   ; Восстанавливаем AL
-        mov result, eax ; Сохраняем результат
-    }
-}
+section .bss
+    min resd 1
 
-int main() {
-    uint8_t value = 0xAB; // Заполняем значением 0xAB
-    uint32_t result;
+section .text
+    global _start
 
-    fillRegister(value, result);
+_start:
+    mov eax, [num1]
+    mov ebx, [num2]
+    cmp eax, ebx
+    jle set_min_num1
+    mov eax, ebx
+set_min_num1:
+    mov [min], eax
 
-    std::cout << "Результат: 0x" << std::hex << result << std::endl;
+    ; Вывод результата (предполагается, что используется функция printf)
+    push eax
+    push min_msg
+    call printf
+    add esp, 8
 
-    return 0;
-}
+    ; Завершение программы
+    mov eax, 1
+    xor ebx, ebx
+    int 0x80
