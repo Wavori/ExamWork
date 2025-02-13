@@ -1,42 +1,54 @@
-#include <iostream>
+section .data
+    purchase_amount dd 100
+    paid_amount dd 150
+    thank_you_msg db "Спасибо!", 10, 0
+    change_msg db "Возьмите сдачу: %d", 10, 0
+    insufficient_msg db "Недостаточно средств: %d", 10, 0
 
-int main() {
-    int month = 1;
-    int days;
+section .bss
+    change resd 1
 
-_asm {
-    mov eax, [month]
+section .text
+    global _start
 
-    cmp eax, 2
-    je february
-    cmp eax, 4
-    je april
-    cmp eax, 6
-    je june
-    cmp eax, 9
-    je september
-    cmp eax, 11
-    je november
+_start:
+    mov eax, [purchase_amount]
+    mov ebx, [paid_amount]
 
-    ; Default to 31 days
-    mov ebx, 31
-    jmp set_days
+    cmp eax, ebx
+    je thank_you
+    jg insufficient_funds
 
-    february :
-    mov ebx, 28
-        jmp set_days
+    ; Calculate change
+    sub ebx, eax
+    mov [change], ebx
 
-      
-     april :
-    june:
-    september:
-    november:
-    mov ebx, 30
+    ; Вывод результата (предполагается, что используется функция printf)
+    push ebx
+    push change_msg
+    call printf
+    add esp, 8
+    jmp end_program
 
-    set_days :
-    mov[days], ebx
-}
-std::cout << "Days in month: " << days << std::endl;
+thank_you:
+    ; Вывод результата (предполагается, что используется функция printf)
+    push thank_you_msg
+    call printf
+    add esp, 4
+    jmp end_program
 
-return 0;
-}
+insufficient_funds:
+    sub eax, ebx
+    mov [change], eax
+
+    ; Вывод результата (предполагается, что используется функция printf)
+    push eax
+    push insufficient_msg
+    call printf
+    add esp, 8
+
+end_program:
+    ; Завершение программы
+    mov eax, 1
+    xor ebx, ebx
+    int 0x80
