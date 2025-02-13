@@ -1,10 +1,11 @@
 section .data
     num1 dd 5
     num2 dd 10
-    min_msg db "Minimum is: %d", 10, 0
+    num3 dd 3
+    max_msg db "Maximum is: %d", 10, 0
 
 section .bss
-    min resd 1
+    max resd 1
 
 section .text
     global _start
@@ -12,15 +13,21 @@ section .text
 _start:
     mov eax, [num1]
     mov ebx, [num2]
+    mov ecx, [num3]
+
     cmp eax, ebx
-    jle set_min_num1
+    jge check_num3_1
     mov eax, ebx
-set_min_num1:
-    mov [min], eax
+check_num3_1:
+    cmp eax, ecx
+    jge set_max
+    mov eax, ecx
+set_max:
+    mov [max], eax
 
     ; Вывод результата (предполагается, что используется функция printf)
     push eax
-    push min_msg
+    push max_msg
     call printf
     add esp, 8
 
