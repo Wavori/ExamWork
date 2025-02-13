@@ -1,41 +1,47 @@
 section .data
-    x dd -15
-    a dd 2
-    result_msg db "Result is: %d", 10, 0
+    month dd 2
+    days_msg db "Days in month: %d", 10, 0
 
 section .bss
-    y resd 1
+    days resd 1
 
 section .text
     global _start
 
 _start:
-    mov eax, [x]
-    mov ebx, [a]
+    mov eax, [month]
 
-    cmp eax, -10
-    jl case_less_than_minus10
-    cmp eax, 10
-    jge case_greater_than_10
-    ; case -10 <= x < 10
-    imul eax, eax
-    mov [y], eax
-    jmp print_result
+    cmp eax, 2
+    je february
+    cmp eax, 4
+    je april
+    cmp eax, 6
+    je june
+    cmp eax, 9
+    je september
+    cmp eax, 11
+    je november
 
-case_less_than_minus10:
-    imul eax, eax
-    imul eax, ebx
-    mov [y], eax
-    jmp print_result
+    ; Default to 31 days
+    mov ebx, 31
+    jmp set_days
 
-case_greater_than_10:
-    sub ebx, eax
-    mov [y], ebx
+february:
+    mov ebx, 28
+    jmp set_days
 
-print_result:
+april:
+june:
+september:
+november:
+    mov ebx, 30
+
+set_days:
+    mov [days], ebx
+
     ; Вывод результата (предполагается, что используется функция printf)
-    push dword [y]
-    push result_msg
+    push ebx
+    push days_msg
     call printf
     add esp, 8
 
