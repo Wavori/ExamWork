@@ -1,33 +1,41 @@
 section .data
-    num1 dd 5
-    num2 dd 10
-    num3 dd 3
-    max_msg db "Maximum is: %d", 10, 0
+    x dd -15
+    a dd 2
+    result_msg db "Result is: %d", 10, 0
 
 section .bss
-    max resd 1
+    y resd 1
 
 section .text
     global _start
 
 _start:
-    mov eax, [num1]
-    mov ebx, [num2]
-    mov ecx, [num3]
+    mov eax, [x]
+    mov ebx, [a]
 
-    cmp eax, ebx
-    jge check_num3_1
-    mov eax, ebx
-check_num3_1:
-    cmp eax, ecx
-    jge set_max
-    mov eax, ecx
-set_max:
-    mov [max], eax
+    cmp eax, -10
+    jl case_less_than_minus10
+    cmp eax, 10
+    jge case_greater_than_10
+    ; case -10 <= x < 10
+    imul eax, eax
+    mov [y], eax
+    jmp print_result
 
+case_less_than_minus10:
+    imul eax, eax
+    imul eax, ebx
+    mov [y], eax
+    jmp print_result
+
+case_greater_than_10:
+    sub ebx, eax
+    mov [y], ebx
+
+print_result:
     ; Вывод результата (предполагается, что используется функция printf)
-    push eax
-    push max_msg
+    push dword [y]
+    push result_msg
     call printf
     add esp, 8
 
