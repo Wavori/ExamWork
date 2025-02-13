@@ -1,42 +1,37 @@
 #include <iostream>
 
 int main() {
-    int month = 1;
-    int days;
+    int x = -15;
+    int a = 5;
+    int y;
 
-_asm {
-    mov eax, [month]
 
-    cmp eax, 2
-    je february
-    cmp eax, 4
-    je april
-    cmp eax, 6
-    je june
-    cmp eax, 9
-    je september
-    cmp eax, 11
-    je november
+    _asm {
+        mov eax, x
+        mov ebx, a
 
-    ; Default to 31 days
-    mov ebx, 31
-    jmp set_days
+        cmp eax, -10
+        jl case_less_than_minus10
+        cmp eax, 10
+        jge case_greater_than_10
+        ; case -10 <= x < 10
+            imul eax, eax
+            mov[y], eax
+            jmp print_result
+        case_less_than_minus10 :
+            imul eax, eax 
+            imul eax, ebx
+            mov[y], eax 
+            jmp print_result
+        case_greater_than_10 :
+            sub ebx, eax
+            mov[y], ebx
 
-    february :
-    mov ebx, 28
-        jmp set_days
+           print_result:
 
-      
-     april :
-    june:
-    september:
-    november:
-    mov ebx, 30
+     }
 
-    set_days :
-    mov[days], ebx
-}
-std::cout << "Days in month: " << days << std::endl;
+    std::cout << "y = " << y << std::endl;
 
-return 0;
+   return 0;
 }
