@@ -1,51 +1,37 @@
-section .data
-    month dd 2
-    days_msg db "Days in month: %d", 10, 0
+#include <iostream>
 
-section .bss
-    days resd 1
+int main() {
+    int x = -15;
+    int a = 5;
+    int y;
 
-section .text
-    global _start
 
-_start:
-    mov eax, [month]
+    _asm {
+        mov eax, x
+        mov ebx, a
 
-    cmp eax, 2
-    je february
-    cmp eax, 4
-    je april
-    cmp eax, 6
-    je june
-    cmp eax, 9
-    je september
-    cmp eax, 11
-    je november
+        cmp eax, -10
+        jl case_less_than_minus10
+        cmp eax, 10
+        jge case_greater_than_10
+        ; case -10 <= x < 10
+            imul eax, eax
+            mov[y], eax
+            jmp print_result
+        case_less_than_minus10 :
+            imul eax, eax 
+            imul eax, ebx
+            mov[y], eax 
+            jmp print_result
+        case_greater_than_10 :
+            sub ebx, eax
+            mov[y], ebx
 
-    ; Default to 31 days
-    mov ebx, 31
-    jmp set_days
+           print_result:
 
-february:
-    mov ebx, 28
-    jmp set_days
+     }
 
-april:
-june:
-september:
-november:
-    mov ebx, 30
+    std::cout << "y = " << y << std::endl;
 
-set_days:
-    mov [days], ebx
-
-    ; Вывод результата (предполагается, что используется функция printf)
-    push ebx
-    push days_msg
-    call printf
-    add esp, 8
-
-    ; Завершение программы
-    mov eax, 1
-    xor ebx, ebx
-    int 0x80
+   return 0;
+}
