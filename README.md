@@ -1,54 +1,24 @@
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.unit.dp
+import androidx.compose.ui.tooling.preview.Preview
 
 @Composable
-fun Task4ColumnLayout() {
-    Column(
-        modifier = Modifier
-            .fillMaxWidth() // Ширина столбца равна ширине родителя
-            .background(Color.White) // Фон столбца
-    ) {
-        // Красный блок (5%)
-        Text(
-            text = "5%",
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(20.dp)
-                .background(Color.Red)
-        )
+fun Task4() {
+    // Список с пятью разными строковыми значениями
+    val items = listOf("Элемент 1", "Элемент 2", "Элемент 3", "Элемент 4", "Элемент 5")
 
-        // Зеленый блок (15%)
-        Text(
-            text = "15%",
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(60.dp)
-                .background(Color.Green)
-        )
-
-        // Синий блок (30%)
-        Text(
-            text = "30%",
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(120.dp)
-                .background(Color.Blue)
-        )
-
-        // Желтый блок (50%)
-        Text(
-            text = "50%",
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(200.dp)
-                .background(Color.Yellow)
-        )
+    // Используем LazyColumn для отображения списка
+    LazyColumn {
+        items(items) { item ->
+            Text(text = item)
+        }
     }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun Task4Preview() {
+    Task4()
 }
