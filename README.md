@@ -1,54 +1,26 @@
-section .data
-    purchase_amount dd 100
-    paid_amount dd 150
-    thank_you_msg db "Спасибо!", 10, 0
-    change_msg db "Возьмите сдачу: %d", 10, 0
-    insufficient_msg db "Недостаточно средств: %d", 10, 0
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 
-section .bss
-    change resd 1
+@Composable
+fun Task2() {
+    Text(
+        text = "Привет, Jetpack Compose!",
+        fontSize = 24.sp,
+        modifier = Modifier
+            .background(Color.LightGray)
+            .padding(20.dp)
+    )
+}
 
-section .text
-    global _start
-
-_start:
-    mov eax, [purchase_amount]
-    mov ebx, [paid_amount]
-
-    cmp eax, ebx
-    je thank_you
-    jg insufficient_funds
-
-    ; Calculate change
-    sub ebx, eax
-    mov [change], ebx
-
-    ; Вывод результата (предполагается, что используется функция printf)
-    push ebx
-    push change_msg
-    call printf
-    add esp, 8
-    jmp end_program
-
-thank_you:
-    ; Вывод результата (предполагается, что используется функция printf)
-    push thank_you_msg
-    call printf
-    add esp, 4
-    jmp end_program
-
-insufficient_funds:
-    sub eax, ebx
-    mov [change], eax
-
-    ; Вывод результата (предполагается, что используется функция printf)
-    push eax
-    push insufficient_msg
-    call printf
-    add esp, 8
-
-end_program:
-    ; Завершение программы
-    mov eax, 1
-    xor ebx, ebx
-    int 0x80
+@Preview(showBackground = true)
+@Composable
+fun Task2Preview() {
+    Task2()
+}
