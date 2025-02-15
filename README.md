@@ -25,3 +25,16 @@ fun Task3Row() {
         }
     }
 }
+
+
+import androidx.compose.foundation.layout.Box
+
+@Composable
+fun Task3Box() {
+    Box {
+        Text(text = "Добро пожаловать")
+        Button(onClick = { /* Do something */ }) {
+            Text(text = "ОК")
+        }
+    }
+}
