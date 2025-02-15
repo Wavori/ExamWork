@@ -11,3 +11,17 @@ fun Task3Column() {
         }
     }
 }
+
+
+
+import androidx.compose.foundation.layout.Row
+
+@Composable
+fun Task3Row() {
+    Row {
+        Text(text = "Добро пожаловать")
+        Button(onClick = { /* Do something */ }) {
+            Text(text = "ОК")
+        }
+    }
+}
