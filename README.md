@@ -1,36 +1,27 @@
 #include <iostream>
 
 int main() {
-    int N;
-    std::cout << "Введите положительное число N: ";
-    std::cin >> N;
+    int N = 20; // Пример значения N
+    int number = N;
 
     __asm {
-        mov ecx, N          ; Загружаем N в регистр ecx
-
-    print_multiples:
-        mov eax, ecx        ; Копируем ecx в eax
-        cdq                 ; Расширяем eax до edx:eax
-        mov ebx, 5          ; Загружаем 5 в регистр ebx
-        idiv ebx            ; Делим edx:eax на ebx
-        cmp edx, 0          ; Проверяем остаток
-        jne next_number     ; Если остаток не 0, переходим к следующему числу
-
-        ; Выводим число
-        push eax            ; Сохраняем eax
-        mov eax, ecx        ; Копируем ecx в eax
-        call print_number   ; Вызываем функцию для вывода числа
-        add esp, 4          ; Очищаем стек
-
-    next_number:
-        sub ecx, 1          ; Уменьшаем ecx
-        cmp ecx, 0          ; Сравниваем с 0
-        jge print_multiples ; Если ecx >= 0, продолжаем
+        mov ecx, number   // Загружаем значение number в регистр ecx
+        loop_start:
+            cmp ecx, 0     // Сравниваем ecx с 0
+            jl done        // Если ecx меньше 0, переходим к метке done
+            test ecx, ecx  // Проверяем, делится ли ecx на 5
+            jnz next       // Если не делится, переходим к метке next
+            mov eax, ecx   // Перемещаем значение ecx в eax
+            call print_number // Вызываем функцию для печати числа
+            next:
+            sub ecx, 5     // Уменьшаем ecx на 5
+            jmp loop_start // Переходим к началу цикла
+        done:
     }
 
     return 0;
 }
 
-void print_number(int number) {
-    std::cout << number << " ";
+void print_number() {
+    std::cout << _EAX << " "; // Печатаем значение регистра EAX
 }
