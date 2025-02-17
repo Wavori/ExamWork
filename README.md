@@ -1,40 +1,38 @@
 #include <iostream>
 
 int main() {
-    int size;
-    std::cout << "Введите размер таблицы умножения: ";
-    std::cin >> size;
+    int n;
+    std::cout << "Введите число n: ";
+    std::cin >> n;
 
     __asm {
-        mov ecx, 1          // Инициализируем строки (i = 1)
-    outer_loop:
-        cmp ecx, size       // Сравниваем i с size
-        jg done              // Если i > size, завершаем цикл
+        mov ecx, n          // Загружаем n в регистр ecx
+        cmp ecx, 0          // Сравниваем ecx с 0
+        jl done             // Если ecx < 0, завершаем цикл
 
-        mov edx, 1          // Инициализируем столбцы (j = 1)
-    inner_loop:
-        cmp edx, size       // Сравниваем j с size
-        jg next_row         // Если j > size, переходим к следующей строке
+    loop_start:
+        mov eax, ecx        // Копируем ecx в eax
+        cdq                 // Расширяем eax в edx:eax для деления
+        mov ebx, 5          // Загружаем 5 в ebx
+        idiv ebx            // Делим eax на ebx, остаток в edx
+        test edx, edx       // Проверяем остаток от деления
+        jnz not_multiple    // Если остаток не 0, переходим к not_multiple
 
-        // Вычисляем произведение i * j
-        mov eax, ecx        // Загружаем i в eax
-        imul eax, edx       // Умножаем eax на j
-        push eax            // Сохраняем результат в стеке
-
-        // Выводим результат
-        std::cout << eax << "\t";
+        // Если число кратно 5, выводим его
+        push ecx            // Сохраняем ecx в стеке
+        push eax            // Сохраняем eax в стеке
+        std::cout << ecx << " ";
         pop eax             // Восстанавливаем eax из стека
+        pop ecx             // Восстанавливаем ecx из стека
 
-        inc edx             // Увеличиваем j на 1
-        jmp inner_loop      // Повторяем внутренний цикл
-
-    next_row:
-        std::cout << std::endl; // Переходим на новую строку
-        inc ecx             // Увеличиваем i на 1
-        jmp outer_loop      // Повторяем внешний цикл
+    not_multiple:
+        dec ecx             // Уменьшаем ecx на 1
+        cmp ecx, 0          // Сравниваем ecx с 0
+        jge loop_start      // Если ecx >= 0, продолжаем цикл
 
     done:
     }
 
+    std::cout << std::endl;
     return 0;
 }
