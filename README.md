@@ -5,29 +5,32 @@ int main() {
     std::cout << "Введите положительное число N: ";
     std::cin >> N;
 
-    int count = 0;
-
     __asm {
-        mov ecx, 1          ; Начинаем с 1
-        mov ebx, N          ; Загружаем N в регистр ebx
+        mov ecx, N          ; Загружаем N в регистр ecx
 
-    check_divisor:
-        mov edx, 0          ; Очищаем edx для деления
-        mov eax, ebx        ; Копируем N в eax
-        div ecx             ; Делим eax на ecx
+    print_multiples:
+        mov eax, ecx        ; Копируем ecx в eax
+        cdq                 ; Расширяем eax до edx:eax
+        mov ebx, 5          ; Загружаем 5 в регистр ebx
+        idiv ebx            ; Делим edx:eax на ebx
         cmp edx, 0          ; Проверяем остаток
-        je increment_count  ; Если остаток 0, переходим к увеличению счетчика
-        jmp next_number     ; Иначе переходим к следующему числу
+        jne next_number     ; Если остаток не 0, переходим к следующему числу
 
-    increment_count:
-        inc count           ; Увеличиваем счетчик делителей
+        ; Выводим число
+        push eax            ; Сохраняем eax
+        mov eax, ecx        ; Копируем ecx в eax
+        call print_number   ; Вызываем функцию для вывода числа
+        add esp, 4          ; Очищаем стек
 
     next_number:
-        inc ecx             ; Увеличиваем делитель
-        cmp ecx, ebx        ; Сравниваем с N
-        jle check_divisor   ; Если ecx <= N, продолжаем
+        sub ecx, 1          ; Уменьшаем ecx
+        cmp ecx, 0          ; Сравниваем с 0
+        jge print_multiples ; Если ecx >= 0, продолжаем
     }
 
-    std::cout << "Количество делителей: " << count << std::endl;
     return 0;
+}
+
+void print_number(int number) {
+    std::cout << number << " ";
 }
