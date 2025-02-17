@@ -1,36 +1,36 @@
 #include <iostream>
 
 int main() {
-    int N;
-    std::cout << "Введите положительное число N: ";
-    std::cin >> N;
+    int n;
+    std::cout << "Enter the value of n: ";
+    std::cin >> n;
 
     __asm {
-        mov ecx, N          ; Загружаем N в регистр ecx
+        mov eax, n          ; Загружаем значение n в регистр eax
+        mov ebx, 5          ; Загружаем значение 5 в регистр ebx
 
-    print_multiples:
-        mov eax, ecx        ; Копируем ecx в eax
+    loop_start:
+        cmp eax, 0          ; Сравниваем eax с 0
+        jl loop_end         ; Если eax < 0, переходим к loop_end
         cdq                 ; Расширяем eax до edx:eax
-        mov ebx, 5          ; Загружаем 5 в регистр ebx
-        idiv ebx            ; Делим edx:eax на ebx
-        cmp edx, 0          ; Проверяем остаток
-        jne next_number     ; Если остаток не 0, переходим к следующему числу
-
-        ; Выводим число
-        push eax            ; Сохраняем eax
-        mov eax, ecx        ; Копируем ecx в eax
-        call print_number   ; Вызываем функцию для вывода числа
+        idiv ebx            ; Делим edx:eax на ebx, остаток в edx
+        cmp edx, 0          ; Сравниваем остаток с 0
+        jne not_multiple    ; Если остаток не равен 0, переходим к not_multiple
+        push eax            ; Сохраняем eax в стек
+        push eax            ; Сохраняем eax в стек
+        call print_number   ; Вызываем функцию print_number
         add esp, 4          ; Очищаем стек
 
-    next_number:
-        sub ecx, 1          ; Уменьшаем ecx
-        cmp ecx, 0          ; Сравниваем с 0
-        jge print_multiples ; Если ecx >= 0, продолжаем
+    not_multiple:
+        sub eax, 5          ; Уменьшаем eax на 5
+        jmp loop_start      ; Переходим к началу цикла
+
+    loop_end:
     }
 
     return 0;
 }
 
-void print_number(int number) {
-    std::cout << number << " ";
+void print_number(int num) {
+    std::cout << num << " ";
 }
