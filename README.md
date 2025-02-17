@@ -1,32 +1,33 @@
 #include <iostream>
 
-int count_divisors(int n) {
-    int count = 0;
-    __asm {
-        mov eax, 1      // eax = 1 (начальное значение для делителя)
-        mov ecx, n      // ecx = n (число, для которого ищем делители)
-        mov edx, 0      // edx = 0 (используется для хранения остатка)
-
-        count_loop:
-        mov ebx, ecx    // ebx = n
-        div ebx         // делим ecx на eax, остаток в edx
-        cmp edx, 0      // сравниваем остаток с 0
-        je increment    // если остаток 0, переходим к метке increment
-        jmp next_iter   // иначе переходим к следующей итерации
-
-        increment:
-        inc count        // увеличиваем счетчик делителей
-
-        next_iter:
-        inc eax          // увеличиваем делитель
-        cmp eax, ecx     // сравниваем делитель с числом n
-        jle count_loop   // если делитель <= n, продолжаем цикл
-    }
-    return count;
-}
-
 int main() {
-    int N = 6;
-    std::cout << "Количество делителей числа " << N << ": " << count_divisors(N) << std::endl;
+    int N;
+    std::cout << "Введите положительное число N: ";
+    std::cin >> N;
+
+    int count = 0;
+
+    __asm {
+        mov ecx, 1          ; Начинаем с 1
+        mov ebx, N          ; Загружаем N в регистр ebx
+
+    check_divisor:
+        mov edx, 0          ; Очищаем edx для деления
+        mov eax, ebx        ; Копируем N в eax
+        div ecx             ; Делим eax на ecx
+        cmp edx, 0          ; Проверяем остаток
+        je increment_count  ; Если остаток 0, переходим к увеличению счетчика
+        jmp next_number     ; Иначе переходим к следующему числу
+
+    increment_count:
+        inc count           ; Увеличиваем счетчик делителей
+
+    next_number:
+        inc ecx             ; Увеличиваем делитель
+        cmp ecx, ebx        ; Сравниваем с N
+        jle check_divisor   ; Если ecx <= N, продолжаем
+    }
+
+    std::cout << "Количество делителей: " << count << std::endl;
     return 0;
 }
