@@ -1,27 +1,26 @@
 #include <iostream>
 
 int main() {
-    int N = 20; // Пример значения N
-    int number = N;
+    int n;
+    std::cout << "Введите значение n: ";
+    std::cin >> n;
 
     __asm {
-        mov ecx, number   // Загружаем значение number в регистр ecx
-        loop_start:
-            cmp ecx, 0     // Сравниваем ecx с 0
-            jl done        // Если ecx меньше 0, переходим к метке done
-            test ecx, ecx  // Проверяем, делится ли ecx на 5
-            jnz next       // Если не делится, переходим к метке next
-            mov eax, ecx   // Перемещаем значение ecx в eax
-            call print_number // Вызываем функцию для печати числа
-            next:
-            sub ecx, 5     // Уменьшаем ecx на 5
-            jmp loop_start // Переходим к началу цикла
-        done:
+        mov eax, n
+        for_loop:
+            cmp eax, 0
+            jl end_loop
+            push eax
+            call print_number
+            add esp, 4
+            sub eax, 5
+            jmp for_loop
+        end_loop:
     }
 
     return 0;
 }
 
-void print_number() {
-    std::cout << _EAX << " "; // Печатаем значение регистра EAX
+void print_number(int number) {
+    std::cout << number << " ";
 }
