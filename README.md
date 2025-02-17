@@ -1,37 +1,36 @@
 #include <iostream>
 
 int main() {
-    const int size = 10;
-    int table[size][size];
+    int n;
+    std::cout << "Введите число n: ";
+    std::cin >> n;
 
     __asm {
-        mov ecx, size       ; Устанавливаем счетчик цикла для строк
-        mov ebx, 0          ; Устанавливаем индекс строки
+        mov ecx, n          // Загружаем n в регистр ecx
+        cmp ecx, 0          // Сравниваем ecx с 0
+        jl done             // Если ecx < 0, завершаем цикл
 
-    row_loop:
-        mov edi, size       ; Устанавливаем счетчик цикла для столбцов
-        mov esi, 0          ; Устанавливаем индекс столбца
+    loop_start:
+        mov eax, ecx        // Копируем ecx в eax
+        cdq                 // Расширяем eax в edx:eax для деления
+        mov ebx, 5          // Загружаем 5 в ebx
+        idiv ebx            // Делим eax на ebx, остаток в edx
+        test edx, edx       // Проверяем остаток от деления
+        jnz not_multiple   // Если остаток не 0, переходим к not_multiple
 
-    col_loop:
-        mov eax, ebx        ; Загружаем индекс строки в eax
-        imul eax, esi      ; Умножаем eax на индекс столбца
-        mov table[ebx * size * 4 + esi * 4], eax ; Сохраняем результат в таблицу
-        inc esi             ; Увеличиваем индекс столбца
-        dec edi             ; Уменьшаем счетчик цикла для столбцов
-        jnz col_loop        ; Если edi не равен 0, переходим к col_loop
+        // Если число кратно 5, выводим его
+        push ecx            // Сохраняем ecx в стеке
+        std::cout << ecx << " ";
+        pop ecx             // Восстанавливаем ecx из стека
 
-        inc ebx             ; Увеличиваем индекс строки
-        dec ecx             ; Уменьшаем счетчик цикла для строк
-        jnz row_loop        ; Если ecx не равен 0, переходим к row_loop
+    not_multiple:
+        dec ecx             // Уменьшаем ecx на 1
+        cmp ecx, 0          // Сравниваем ecx с 0
+        jge loop_start      // Если ecx >= 0, продолжаем цикл
+
+    done:
     }
 
-    // Вывод таблицы умножения
-    for (int i = 0; i < size; ++i) {
-        for (int j = 0; j < size; ++j) {
-            std::cout << table[i][j] << "\t";
-        }
-        std::cout << std::endl;
-    }
-
+    std::cout << std::endl;
     return 0;
 }
