@@ -1,55 +1,34 @@
 #include <iostream>
-#include <iomanip>
 
 int main() {
     const int size = 10;
     int table[size][size];
 
     __asm {
-        mov ecx, 0          ; Инициализируем счетчик строк
+        mov ecx, size       ; Устанавливаем счетчик цикла для строк
+        mov ebx, 0          ; Устанавливаем индекс строки
 
     row_loop:
-        cmp ecx, size       ; Сравниваем с размером
-        jge end_loop        ; Если ecx >= size, заканчиваем
-
-        mov ebx, 0          ; Инициализируем счетчик столбцов
+        mov edi, size       ; Устанавливаем счетчик цикла для столбцов
+        mov esi, 0          ; Устанавливаем индекс столбца
 
     col_loop:
-        cmp ebx, size       ; Сравниваем с размером
-        jge next_row        ; Если ebx >= size, переходим к следующей строке
+        mov eax, ebx        ; Загружаем индекс строки в eax
+        imul eax, esi      ; Умножаем eax на индекс столбца
+        mov table[ebx * size * 4 + esi * 4], eax ; Сохраняем результат в таблицу
+        inc esi             ; Увеличиваем индекс столбца
+        dec edi             ; Уменьшаем счетчик цикла для столбцов
+        jnz col_loop        ; Если edi не равен 0, переходим к col_loop
 
-        ; Вычисляем произведение
-        mov eax, ecx        ; Копируем ecx в eax
-        imul eax, ebx       ; Умножаем eax на ebx
-
-        ; Сохраняем результат в массиве
-        lea edi, table      ; Загружаем адрес массива в edi
-        mov esi, ecx        ; Копируем ecx в esi
-        imul esi, size      ; Умножаем esi на размер
-        add esi, ebx        ; Добавляем ebx к esi
-        mov [edi + esi*4], eax ; Сохраняем результат
-
-        inc ebx             ; Увеличиваем счетчик столбцов
-        jmp col_loop        ; Переходим к следующему столбцу
-
-    next_row:
-        inc ecx             ; Увеличиваем счетчик строк
-        jmp row_loop        ; Переходим к следующей строке
-
-    end_loop:
+        inc ebx             ; Увеличиваем индекс строки
+        dec ecx             ; Уменьшаем счетчик цикла для строк
+        jnz row_loop        ; Если ecx не равен 0, переходим к row_loop
     }
 
-    // Выводим таблицу
-    std::cout << "    ";
-    for (int i = 1; i <= size; ++i) {
-        std::cout << std::setw(4) << i;
-    }
-    std::cout << std::endl;
-
-    for (int i = 1; i <= size; ++i) {
-        std::cout << std::setw(4) << i;
-        for (int j = 1; j <= size; ++j) {
-            std::cout << std::setw(4) << table[i-1][j-1];
+    // Вывод таблицы умножения
+    for (int i = 0; i < size; ++i) {
+        for (int j = 0; j < size; ++j) {
+            std::cout << table[i][j] << "\t";
         }
         std::cout << std::endl;
     }
