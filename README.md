@@ -1,27 +1,30 @@
 #include <iostream>
 
-int factorial(int n) {
-    int result = 1;
-    if (n < 0) {
-        std::cout << "Факториал не существует" << std::endl;
-        return -1; // Ошибка: факториал не существует
-    }
+int count_divisors(int n) {
+    int count = 0;
     __asm {
-        mov eax, 1      // result = 1
-        mov ecx, n      // ecx = n
-        fact_loop:
-        imul eax, ecx   // result *= i
-        loop fact_loop
-        mov result, eax
+        mov eax, 0      // count = 0
+        mov ecx, 1      // ecx = 1
+        divisors_loop:
+        mov edx, 0      // edx = 0
+        mov ebx, n
+        div ebx         // edx:eax / ebx
+        test edx, edx   // проверка остатка
+        jz increment_count
+        jmp next_iteration
+        increment_count:
+        inc eax
+        next_iteration:
+        inc ecx
+        cmp ecx, n
+        jle divisors_loop
+        mov count, eax
     }
-    return result;
+    return count;
 }
 
 int main() {
-    int N = 5;
-    int result = factorial(N);
-    if (result != -1) {
-        std::cout << "Факториал числа " << N << ": " << result << std::endl;
-    }
+    int N = 6;
+    std::cout << "Количество делителей числа " << N << ": " << count_divisors(N) << std::endl;
     return 0;
 }
