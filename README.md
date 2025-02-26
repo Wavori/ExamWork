@@ -1,33 +1,31 @@
 #include <iostream>
+#include <string.h>
 
-extern "C" void copyArray(int* dest, const int* src, int length);
+extern "C" void copySubstring(char* dest, const char* src, int start, int length);
 
 int main() {
-    int source[] = {1, 2, 3, 4, 5};
-    int destination[5];
+    char source[] = "Hello, World!";
+    char destination[20];
 
-    copyArray(destination, source, 5);
+    copySubstring(destination, source, 7, 5);
 
-    std::cout << "Copied Array: ";
-    for (int i = 0; i < 5; ++i) {
-        std::cout << destination[i] << " ";
-    }
-    std::cout << std::endl;
+    std::cout << "Copied Substring: " << destination << std::endl;
     return 0;
 }
 
-// Assembly code for copying an array of integers
-void copyArray(int* dest, const int* src, int length) {
+// Assembly code for copying a substring
+void copySubstring(char* dest, const char* src, int start, int length) {
     __asm {
-        mov esi, src    // Source array
-        mov edi, dest   // Destination array
-        mov ecx, length // Length of the array
+        mov esi, src    // Source string
+        mov edi, dest   // Destination string
+        add esi, start  // Move to the starting position
+        mov ecx, length // Length of the substring
 
     copy_loop:
-        mov eax, [esi]  // Load integer from [esi] to eax
-        mov [edi], eax  // Store integer from eax to [edi]
-        add esi, 4      // Move to the next integer in source array
-        add edi, 4      // Move to the next integer in destination array
+        lodsb           // Load byte from [esi] to al and increment esi
+        stosb           // Store byte from al to [edi] and increment edi
         loop copy_loop  // Decrement ecx and loop if ecx != 0
+
+        mov byte ptr [edi], 0 // Null-terminate the destination string
     }
 }
