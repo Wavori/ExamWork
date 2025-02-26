@@ -1,28 +1,33 @@
 #include <iostream>
-#include <string.h>
 
-extern "C" void copyString(char* dest, const char* src);
+extern "C" void copyArray(int* dest, const int* src, int length);
 
 int main() {
-    char source[] = "Hello, World!";
-    char destination[20];
+    int source[] = {1, 2, 3, 4, 5};
+    int destination[5];
 
-    copyString(destination, source);
+    copyArray(destination, source, 5);
 
-    std::cout << "Copied String: " << destination << std::endl;
+    std::cout << "Copied Array: ";
+    for (int i = 0; i < 5; ++i) {
+        std::cout << destination[i] << " ";
+    }
+    std::cout << std::endl;
     return 0;
 }
 
-// Assembly code for copying a string
-void copyString(char* dest, const char* src) {
+// Assembly code for copying an array of integers
+void copyArray(int* dest, const int* src, int length) {
     __asm {
-        mov esi, src    // Source string
-        mov edi, dest   // Destination string
+        mov esi, src    // Source array
+        mov edi, dest   // Destination array
+        mov ecx, length // Length of the array
 
     copy_loop:
-        lodsb           // Load byte from [esi] to al and increment esi
-        stosb           // Store byte from al to [edi] and increment edi
-        test al, al     // Check if we reached the end of the string
-        jnz copy_loop   // If not, continue copying
+        mov eax, [esi]  // Load integer from [esi] to eax
+        mov [edi], eax  // Store integer from eax to [edi]
+        add esi, 4      // Move to the next integer in source array
+        add edi, 4      // Move to the next integer in destination array
+        loop copy_loop  // Decrement ecx and loop if ecx != 0
     }
 }
