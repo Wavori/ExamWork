@@ -1,31 +1,43 @@
 #include <iostream>
-#include <string.h>
 
-extern "C" void copySubstring(char* dest, const char* src, int start, int length);
+extern "C" int countMatches(const int* array, int size, int value);
 
 int main() {
-    char source[] = "Hello, World!";
-    char destination[20];
+    int array[] = {1, 2, 3, 4, 2, 5, 2, 6, 2};
+    int size = sizeof(array) / sizeof(array[0]);
+    int value;
 
-    copySubstring(destination, source, 7, 5);
+    std::cout << "Enter the value to count: ";
+    std::cin >> value;
 
-    std::cout << "Copied Substring: " << destination << std::endl;
+    int count = countMatches(array, size, value);
+
+    std::cout << "Number of matches: " << count << std::endl;
     return 0;
 }
 
-// Assembly code for copying a substring
-void copySubstring(char* dest, const char* src, int start, int length) {
+// Assembly code to count matches using chained commands
+int countMatches(const int* array, int size, int value) {
+    int count = 0;
     __asm {
-        mov esi, src    // Source string
-        mov edi, dest   // Destination string
-        add esi, start  // Move to the starting position
-        mov ecx, length // Length of the substring
+        mov esi, array   // Source array
+        mov ecx, size    // Size of the array
+        mov edx, value   // Value to match
+        xor ebx, ebx     // Clear ebx (will be used as count register)
 
-    copy_loop:
-        lodsb           // Load byte from [esi] to al and increment esi
-        stosb           // Store byte from al to [edi] and increment edi
-        loop copy_loop  // Decrement ecx and loop if ecx != 0
+    count_loop:
+        lodsd            // Load integer from [esi] to eax and increment esi by 4
+        cmp eax, edx     // Compare value in eax with edx
+        je increment     // If equal, jump to increment
+        jmp next_iter    // Otherwise, jump to next iteration
 
-        mov byte ptr [edi], 0 // Null-terminate the destination string
+    increment:
+        inc ebx         // Increment count in ebx
+
+    next_iter:
+        loop count_loop  // Decrement ecx and loop if ecx != 0
+
+        mov count, ebx   // Move the result from ebx to count variable
     }
+    return count;
 }
