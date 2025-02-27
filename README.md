@@ -1,40 +1,67 @@
 .386
 .model flat, c
+.stack 100h
+
+.data
+    str1 db "Hello", 0
+    str2 db "Hello", 0
+    caption db "Result", 0
+    messageEqual db "Strings are equal", 0
+    messageNotEqual db "Strings are not equal", 0
+
 .code
+CompareStringsProc proc
+    push ebp
+    mov ebp, esp
 
-; Процедура для вычисления 2^x
-Pow2Proc proc
-    push ebp        ; Сохраняем базовый указатель стека
-    mov ebp, esp    ; Устанавливаем новый базовый указатель стека
+    ; Получаем адреса строк из стека
+    mov esi, offset str1
+    mov edi, offset str2
 
-    mov ecx, [ebp+8] ; Получаем значение x из стека
-    mov eax, 1      ; Начальное значение результата (2^0 = 1)
+    ; Сравниваем строки
+compare_loop:
+    mov al, [esi]
+    mov bl, [edi]
+    cmp al, bl
+    jne not_equal
+    cmp al, 0
+    je equal
+    inc esi
+    inc edi
+    jmp compare_loop
 
-pow_loop:
-    test ecx, ecx   ; Проверяем, равен ли ecx нулю
-    jz done         ; Если ecx == 0, завершаем цикл
-    shl eax, 1      ; Умножаем eax на 2 (сдвиг влево на 1 бит)
-    loop pow_loop   ; Уменьшаем ecx на 1 и повторяем цикл
+equal:
+    ; Вызываем MessageBox для отображения сообщения о равенстве строк
+    push MB_OK
+    push offset caption
+    push offset messageEqual
+    push 0
+    call MessageBoxA
+    jmp done
+
+not_equal:
+    ; Вызываем MessageBox для отображения сообщения о неравенстве строк
+    push MB_OK
+    push offset caption
+    push offset messageNotEqual
+    push 0
+    call MessageBoxA
 
 done:
-    pop ebp         ; Восстанавливаем базовый указатель стека
-    ret             ; Возвращаем управление и результат в EAX
-Pow2Proc endp
+    pop ebp
+    ret
+CompareStringsProc endp
 
 end
 
-
-#include <iostream>
+#include <windows.h>
 
 // Объявляем внешнюю процедуру на ассемблере
-extern "C" int Pow2Proc(unsigned int x);
+extern "C" void CompareStringsProc();
 
 int main() {
-    unsigned int x = 5;
-
     // Вызываем процедуру на ассемблере
-    int result = Pow2Proc(x);
+    CompareStringsProc();
 
-    std::cout << "2^" << x << " = " << result << std::endl;
     return 0;
 }
