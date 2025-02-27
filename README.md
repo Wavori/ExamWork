@@ -1,43 +1,36 @@
+.386
+.model flat, c
+.code
+
+; Процедура для вычисления суммы двух чисел
+SumProc proc
+    push ebp        ; Сохраняем базовый указатель стека
+    mov ebp, esp    ; Устанавливаем новый базовый указатель стека
+
+    mov eax, [ebp+8]  ; Получаем первое число (a) из стека
+    mov ebx, [ebp+12] ; Получаем второе число (b) из стека
+
+    add eax, ebx     ; Вычисляем сумму a + b
+
+    pop ebp          ; Восстанавливаем базовый указатель стека
+    ret              ; Возвращаем управление и результат в EAX
+SumProc endp
+
+end
+
+
 #include <iostream>
 
-extern "C" int countMatches(const int* array, int size, int value);
+// Объявляем внешнюю процедуру на ассемблере
+extern "C" int SumProc(int a, int b);
 
 int main() {
-    int array[] = {1, 2, 3, 4, 2, 5, 2, 6, 2};
-    int size = sizeof(array) / sizeof(array[0]);
-    int value;
+    int a = 5;
+    int b = 10;
 
-    std::cout << "Enter the value to count: ";
-    std::cin >> value;
+    // Вызываем процедуру на ассемблере
+    int result = SumProc(a, b);
 
-    int count = countMatches(array, size, value);
-
-    std::cout << "Number of matches: " << count << std::endl;
+    std::cout << "Sum: " << result << std::endl;
     return 0;
-}
-
-// Assembly code to count matches using chained commands
-int countMatches(const int* array, int size, int value) {
-    int count = 0;
-    __asm {
-        mov esi, array   // Source array
-        mov ecx, size    // Size of the array
-        mov edx, value   // Value to match
-        xor ebx, ebx     // Clear ebx (will be used as count register)
-
-    count_loop:
-        lodsd            // Load integer from [esi] to eax and increment esi by 4
-        cmp eax, edx     // Compare value in eax with edx
-        je increment     // If equal, jump to increment
-        jmp next_iter    // Otherwise, jump to next iteration
-
-    increment:
-        inc ebx         // Increment count in ebx
-
-    next_iter:
-        loop count_loop  // Decrement ecx and loop if ecx != 0
-
-        mov count, ebx   // Move the result from ebx to count variable
-    }
-    return count;
 }
