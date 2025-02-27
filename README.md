@@ -2,19 +2,24 @@
 .model flat, c
 .code
 
-; Процедура для вычисления суммы двух чисел
-SumProc proc
+; Процедура для вычисления 2^x
+Pow2Proc proc
     push ebp        ; Сохраняем базовый указатель стека
     mov ebp, esp    ; Устанавливаем новый базовый указатель стека
 
-    mov eax, [ebp+8]  ; Получаем первое число (a) из стека
-    mov ebx, [ebp+12] ; Получаем второе число (b) из стека
+    mov ecx, [ebp+8] ; Получаем значение x из стека
+    mov eax, 1      ; Начальное значение результата (2^0 = 1)
 
-    add eax, ebx     ; Вычисляем сумму a + b
+pow_loop:
+    test ecx, ecx   ; Проверяем, равен ли ecx нулю
+    jz done         ; Если ecx == 0, завершаем цикл
+    shl eax, 1      ; Умножаем eax на 2 (сдвиг влево на 1 бит)
+    loop pow_loop   ; Уменьшаем ecx на 1 и повторяем цикл
 
-    pop ebp          ; Восстанавливаем базовый указатель стека
-    ret              ; Возвращаем управление и результат в EAX
-SumProc endp
+done:
+    pop ebp         ; Восстанавливаем базовый указатель стека
+    ret             ; Возвращаем управление и результат в EAX
+Pow2Proc endp
 
 end
 
@@ -22,15 +27,14 @@ end
 #include <iostream>
 
 // Объявляем внешнюю процедуру на ассемблере
-extern "C" int SumProc(int a, int b);
+extern "C" int Pow2Proc(unsigned int x);
 
 int main() {
-    int a = 5;
-    int b = 10;
+    unsigned int x = 5;
 
     // Вызываем процедуру на ассемблере
-    int result = SumProc(a, b);
+    int result = Pow2Proc(x);
 
-    std::cout << "Sum: " << result << std::endl;
+    std::cout << "2^" << x << " = " << result << std::endl;
     return 0;
 }
