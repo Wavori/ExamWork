@@ -1,73 +1,69 @@
-.386
-.model flat, stdcall
-.stack 4096
+<resources>
+    <!-- Русские строки -->
+    <string name="find">Найти</string>
+    <string name="ok">ОК</string>
+    <string name="login">Войти</string>
+    <string name="register">Зарегистрироваться</string>
 
-option casemap :none
+    <!-- Английские строки -->
+    <string name="search">Search</string>
+    <string name="enter">Enter</string>
 
-include windows.inc
-include user32.inc
-include kernel32.inc
+    <!-- Форматированная строка -->
+    <string name="user_info">Имя пользователя: %1$s, Год: %2$d</string>
+</resources>
 
-includelib user32.lib
-includelib kernel32.lib
+<resources>
+    <string-array name="seasons">
+        <item>Весна</item>
+        <item>Лето</item>
+        <item>Осень</item>
+        <item>Зима</item>
+    </string-array>
+</resources>
 
-.data
-    str1 db 256 dup(?)
-    str2 db 256 dup(?)
-    result db 256 dup(?)
+<resources>
+    <plurals name="hours">
+        <item quantity="one">час</item>
+        <item quantity="few">часа</item>
+        <item quantity="many">часов</item>
+        <item quantity="other">часов</item>
+    </plurals>
 
-.code
-CompareStrings proc
-    ; Входные параметры: адреса строк в памяти
-    ; Выходные параметры: результат сравнения в EAX (0 - строки равны, 1 - строки не равны)
+    <plurals name="minutes">
+        <item quantity="one">минута</item>
+        <item quantity="few">минуты</item>
+        <item quantity="many">минут</item>
+        <item quantity="other">минут</item>
+    </plurals>
+</resources>
 
-    mov esi, offset str1
-    mov edi, offset str2
+<resources>
+    <color name="colorPrimary">#6200EE</color>
+    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorAccent">#03DAC5</color>
+    <color name="colorBackground">#FFFFFF</color>
+    <color name="colorText">#000000</color>
+</resources>
 
-    ; Сравниваем строки посимвольно
-compare_loop:
-    lodsb           ; Загружаем символ из str1 в AL
-    scasb           ; Сравниваем с символом из str2
-    jne not_equal   ; Если символы не равны, переходим к not_equal
-    test al, al     ; Проверяем, достигли ли конца строки
-    jnz compare_loop ; Если нет, продолжаем сравнение
+<resources>
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Другие стили -->
+        <item name="android:fontFamily">@font/my_font</item>
+    </style>
+</resources>
 
-    ; Строки равны
-    mov eax, 0
-    jmp done
+<resources>
+    <dimen name="button_width">100dp</dimen>
+    <dimen name="button_height">50dp</dimen>
+    <dimen name="button_margin">16dp</dimen>
+    <dimen name="row_padding">8dp</dimen>
+</resources>
 
-not_equal:
-    ; Строки не равны
-    mov eax, 1
-
-done:
-    ret
-CompareStrings endp
-
-end
-
-#include <windows.h>
-
-extern "C" int CompareStrings();
-
-int main() {
-    // Заполняем строки для сравнения
-    char str1[] = "Hello, World!";
-    char str2[] = "Hello, World!";
-
-    // Копируем строки в общую область памяти
-    memcpy((void*)0x00404000, str1, sizeof(str1));
-    memcpy((void*)0x00404010, str2, sizeof(str2));
-
-    // Вызываем ассемблерную процедуру
-    int result = CompareStrings();
-
-    // Отображаем результат сравнения
-    if (result == 0) {
-        MessageBox(NULL, "Строки равны", "Результат", MB_OK);
-    } else {
-        MessageBox(NULL, "Строки не равны", "Результат", MB_OK);
-    }
-
-    return 0;
-}
+<Button
+    android:layout_width="@dimen/button_width"
+    android:layout_height="@dimen/button_height"
+    android:text="@string/ok"
+    android:backgroundTint="@color/colorPrimary"
+    android:fontFamily="@font/my_font"
+    android:layout_margin="@dimen/button_margin"/>
