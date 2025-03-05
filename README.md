@@ -1,35 +1,30 @@
-<Button
-    android:id="@+id/button_find"
+<TextView
+    android:id="@+id/textView_seasons"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="@string/find" />
+    android:layout_height="wrap_content" />
 
-<Button
-    android:id="@+id/button_ok"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="@string/ok" />
+    import android.os.Bundle;
+import android.widget.TextView;
+import androidx.appcompat.app.AppCompatActivity;
 
-<Button
-    android:id="@+id/button_login"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="@string/login" />
+public class MainActivity extends AppCompatActivity {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
 
-<Button
-    android:id="@+id/button_register"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="@string/register" />
+        TextView textViewSeasons = findViewById(R.id.textView_seasons);
 
-<Button
-    android:id="@+id/button_search"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="@string/search" />
+        // Получаем массив строк из ресурсов
+        String[] seasons = getResources().getStringArray(R.array.seasons);
 
-<Button
-    android:id="@+id/button_enter"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="@string/enter" />
+        // Объединяем значения массива в одну строку
+        StringBuilder seasonsString = new StringBuilder();
+        for (String season : seasons) {
+            seasonsString.append(season).append("\n");
+        }
+
+        // Устанавливаем текст в TextView
+        textViewSeasons.setText(seasonsString.toString());
+    }
+}
