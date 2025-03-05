@@ -1,11 +1,8 @@
-<TextView
-    android:id="@+id/textView_seasons"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content" />
-
-    import android.os.Bundle;
-import android.widget.TextView;
+import android.os.Bundle;
+import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     @Override
@@ -13,18 +10,55 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        TextView textViewSeasons = findViewById(R.id.textView_seasons);
+        // Найдите кнопки по их идентификаторам
+        Button buttonFind = findViewById(R.id.button_find);
+        Button buttonOk = findViewById(R.id.button_ok);
+        Button buttonLogin = findViewById(R.id.button_login);
+        Button buttonRegister = findViewById(R.id.button_register);
+        Button buttonSearch = findViewById(R.id.button_search);
+        Button buttonEnter = findViewById(R.id.button_enter);
 
-        // Получаем массив строк из ресурсов
-        String[] seasons = getResources().getStringArray(R.array.seasons);
+        // Установите обработчики нажатий для кнопок
+        buttonFind.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MainActivity.this, "Нажата кнопка Найти", Toast.LENGTH_SHORT).show();
+            }
+        });
 
-        // Объединяем значения массива в одну строку
-        StringBuilder seasonsString = new StringBuilder();
-        for (String season : seasons) {
-            seasonsString.append(season).append("\n");
-        }
+        buttonOk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MainActivity.this, "Нажата кнопка ОК", Toast.LENGTH_SHORT).show();
+            }
+        });
 
-        // Устанавливаем текст в TextView
-        textViewSeasons.setText(seasonsString.toString());
+        buttonLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MainActivity.this, "Нажата кнопка Войти", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        buttonRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MainActivity.this, "Нажата кнопка Зарегистрироваться", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        buttonSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MainActivity.this, "Нажата кнопка Search", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        buttonEnter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MainActivity.this, "Нажата кнопка Enter", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
