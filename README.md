@@ -1,70 +1,74 @@
-package com.example.yourapp
-
-import android.content.Context
-import android.graphics.Color
-import android.graphics.drawable.Drawable
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.TextView
-import androidx.core.content.ContextCompat
-
-class ProductDisplayView(context: Context) : LinearLayout(context) {
-
-    private var cartCount = 0
-
-    init {
-        orientation = VERTICAL
-        setPadding(16, 16, 16, 16)
-
-        // Создаем метку для названия товара
-        val productName = TextView(context).apply {
-            text = "Название товара"
-            textSize = 24f
-            setTextColor(Color.BLACK)
-        }
-
-        // Создаем метку для цены товара
-        val productPrice = TextView(context).apply {
-            text = "Цена товара"
-            textSize = 18f
-            setTextColor(Color.BLACK)
-            setPadding(0, 8, 0, 16)
-        }
-
-        // Создаем метку для количества товаров в корзине
-        val cartCountLabel = TextView(context).apply {
-            text = "Количество товаров в корзине: $cartCount"
-            textSize = 16f
-            setTextColor(Color.BLACK)
-            setPadding(0, 16, 0, 16)
-        }
-
-        // Создаем кнопку с изображением корзины
-        val addToCartButton = Button(context).apply {
-            text = "Добавить"
-            setCompoundDrawablesWithIntrinsicBounds(
-                ContextCompat.getDrawable(context, R.drawable.ic_cart),
-                null, null, null
+@Composable
+fun ProductCardHorizontal(product: Product) {
+    Card(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(8.dp),
+        elevation = CardDefaults.cardElevation(4.dp),
+        colors = CardDefaults.cardColors(containerColor = Color.White),
+        shape = RoundedCornerShape(8.dp)
+    ) {
+        Row(
+            modifier = Modifier.padding(16.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Image(
+                painter = painterResource(id = product.imageResId),
+                contentDescription = null,
+                modifier = Modifier.size(80.dp)
             )
-            setBackgroundColor(ContextCompat.getColor(context, android.R.color.holo_purple))
-            setTextColor(Color.WHITE)
-            setOnClickListener {
-                // Увеличиваем количество товаров в корзине
-                cartCount++
-                cartCountLabel.text = "Количество товаров в корзине: $cartCount"
-
-                // Измените текст и цвет кнопки
-                text = "Перейти в корзину"
-                setBackgroundColor(Color.WHITE)
-                setTextColor(Color.BLACK)
+            Spacer(modifier = Modifier.width(16.dp))
+            Column {
+                Text(text = product.name, style = MaterialTheme.typography.h6)
+                Text(text = "$${product.price}", style = MaterialTheme.typography.body1)
             }
         }
+    }
+}
 
-        // Добавляем элементы в контейнер
-        addView(productName)
-        addView(productPrice)
-        addView(addToCartButton)
-        addView(cartCountLabel)
+@Composable
+fun ProductCardVertical(product: Product) {
+    Card(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(8.dp),
+        elevation = CardDefaults.cardElevation(4.dp),
+        colors = CardDefaults.cardColors(containerColor = Color.White),
+        shape = RoundedCornerShape(8.dp)
+    ) {
+        Column(
+            modifier = Modifier.padding(16.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Image(
+                painter = painterResource(id = product.imageResId),
+                contentDescription = null,
+                modifier = Modifier
+                    .size(80.dp)
+                    .clip(CircleShape)
+            )
+            Spacer(modifier = Modifier.height(16.dp))
+            Text(text = product.name, style = MaterialTheme.typography.h6)
+            Text(text = "$${product.price}", style = MaterialTheme.typography.body1)
+        }
+    }
+}
+
+@Composable
+fun ProductList(products: List<Product>) {
+    LazyColumn(
+        modifier = Modifier.padding(16.dp),
+        verticalArrangement = Arrangement.spacedBy(8.dp)
+    ) {
+        item {
+            Text(
+                text = "Selected Product",
+                style = MaterialTheme.typography.h5,
+                modifier = Modifier.padding(vertical = 8.dp)
+            )
+        }
+        items(products) { product ->
+            ProductCardHorizontal(product = product)
+        }
     }
 }
