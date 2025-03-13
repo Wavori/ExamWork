@@ -1,33 +1,27 @@
 package com.example.yourapp
 
+import android.content.Context
 import android.graphics.Color
-import android.os.Bundle
 import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 
-class ProductDisplayActivity : AppCompatActivity() {
+class ProductDisplayView(context: Context) : LinearLayout(context) {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        // Создаем корневой контейнер
-        val layout = LinearLayout(this).apply {
-            orientation = LinearLayout.VERTICAL
-            setPadding(16, 16, 16, 16)
-        }
+    init {
+        orientation = VERTICAL
+        setPadding(16, 16, 16, 16)
 
         // Создаем метку для названия товара
-        val productName = TextView(this).apply {
+        val productName = TextView(context).apply {
             text = "Название товара"
             textSize = 24f
             setTextColor(Color.BLACK)
         }
 
         // Создаем метку для цены товара
-        val productPrice = TextView(this).apply {
+        val productPrice = TextView(context).apply {
             text = "Цена товара"
             textSize = 18f
             setTextColor(Color.BLACK)
@@ -35,9 +29,9 @@ class ProductDisplayActivity : AppCompatActivity() {
         }
 
         // Создаем кнопку
-        val addToCartButton = Button(this).apply {
+        val addToCartButton = Button(context).apply {
             text = "Добавить в корзину"
-            setBackgroundColor(ContextCompat.getColor(this@ProductDisplayActivity, android.R.color.holo_purple))
+            setBackgroundColor(ContextCompat.getColor(context, android.R.color.holo_purple))
             setTextColor(Color.WHITE)
             setOnClickListener {
                 // Измените текст и цвет кнопки
@@ -48,11 +42,8 @@ class ProductDisplayActivity : AppCompatActivity() {
         }
 
         // Добавляем элементы в контейнер
-        layout.addView(productName)
-        layout.addView(productPrice)
-        layout.addView(addToCartButton)
-
-        // Устанавливаем контейнер как контент активности
-        setContentView(layout)
+        addView(productName)
+        addView(productPrice)
+        addView(addToCartButton)
     }
 }
