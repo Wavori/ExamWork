@@ -2,12 +2,16 @@ package com.example.yourapp
 
 import android.content.Context
 import android.graphics.Color
+import android.graphics.drawable.Drawable
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 
 class ProductDisplayView(context: Context) : LinearLayout(context) {
+
+    private var cartCount = 0
 
     init {
         orientation = VERTICAL
@@ -28,12 +32,28 @@ class ProductDisplayView(context: Context) : LinearLayout(context) {
             setPadding(0, 8, 0, 16)
         }
 
-        // Создаем кнопку
+        // Создаем метку для количества товаров в корзине
+        val cartCountLabel = TextView(context).apply {
+            text = "Количество товаров в корзине: $cartCount"
+            textSize = 16f
+            setTextColor(Color.BLACK)
+            setPadding(0, 16, 0, 16)
+        }
+
+        // Создаем кнопку с изображением корзины
         val addToCartButton = Button(context).apply {
-            text = "Добавить в корзину"
+            text = "Добавить"
+            setCompoundDrawablesWithIntrinsicBounds(
+                ContextCompat.getDrawable(context, R.drawable.ic_cart),
+                null, null, null
+            )
             setBackgroundColor(ContextCompat.getColor(context, android.R.color.holo_purple))
             setTextColor(Color.WHITE)
             setOnClickListener {
+                // Увеличиваем количество товаров в корзине
+                cartCount++
+                cartCountLabel.text = "Количество товаров в корзине: $cartCount"
+
                 // Измените текст и цвет кнопки
                 text = "Перейти в корзину"
                 setBackgroundColor(Color.WHITE)
@@ -45,5 +65,6 @@ class ProductDisplayView(context: Context) : LinearLayout(context) {
         addView(productName)
         addView(productPrice)
         addView(addToCartButton)
+        addView(cartCountLabel)
     }
 }
